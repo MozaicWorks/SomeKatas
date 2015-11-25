@@ -10,7 +10,9 @@ public class NumeralToRomanTransformer {
 
     Map<Integer, String> correspondence = NumeralToRomanCorrespondence.getCorrespondence();
 
-    String transformToRoman(int arabicNumeral, int length) {
+    String transformToRoman(String numeral) {
+        int arabicNumeral = transformToInt(numeral);
+        int length = numeral.length();
         int[] digits = getDigits(arabicNumeral, length);
         int multiplicationFactor = ArabicNumeral.ONE.getNumeral();
 
@@ -18,9 +20,10 @@ public class NumeralToRomanTransformer {
 
         for(int i = 0; i < length; i ++) {
             int digit = digits[i];
-            newRomanNumber = concatanateRomanDigitIfLessThanFour(newRomanNumber, digit, multiplicationFactor);
+            newRomanNumber = concatenateRomanDigitIfLessThanFour(newRomanNumber, digit, multiplicationFactor);
+            newRomanNumber = concatenateRomanDigitIfEqualToFour(newRomanNumber, digit, multiplicationFactor);
             newRomanNumber = concatanateRomanDigitIfBetweenFiveInclusiveAndNineExclusive(newRomanNumber, digit, multiplicationFactor);
-            newRomanNumber = concatanateRomanDigitIfEqualToNine(newRomanNumber, digit, multiplicationFactor);
+            newRomanNumber = concatenateRomanDigitIfEqualToNine(newRomanNumber, digit, multiplicationFactor);
             multiplicationFactor = multiplicationFactor * ArabicNumeral.TEN.getNumeral();
         }
         return newRomanNumber;
@@ -44,7 +47,7 @@ public class NumeralToRomanTransformer {
     }
 
 
-    private String concatanateRomanDigitIfEqualToNine(String newRomanNumber, int digit, int multiplicationFactor) {
+    private String concatenateRomanDigitIfEqualToNine(String newRomanNumber, int digit, int multiplicationFactor) {
         if (digit == ArabicNumeral.NINE.getNumeral()) {
             String romanDigitToAdd = correspondence.get(ArabicNumeral.ONE.getNumeral() * multiplicationFactor) +
                     correspondence.get(ArabicNumeral.TEN.getNumeral() * multiplicationFactor);
@@ -53,7 +56,16 @@ public class NumeralToRomanTransformer {
         return newRomanNumber;
     }
 
-    private String concatanateRomanDigitIfLessThanFour(String newRomanNumber, int digit, int multiplicationFactor) {
+    private String concatenateRomanDigitIfEqualToFour(String newRomanNumber, int digit, int multiplicationFactor) {
+        if (digit == ArabicNumeral.FOUR.getNumeral()) {
+            String romanDigitToAdd = correspondence.get(ArabicNumeral.ONE.getNumeral() * multiplicationFactor) +
+                    correspondence.get(ArabicNumeral.FIVE.getNumeral() * multiplicationFactor);
+            newRomanNumber = romanDigitToAdd + newRomanNumber;
+        }
+        return newRomanNumber;
+    }
+
+    private String concatenateRomanDigitIfLessThanFour(String newRomanNumber, int digit, int multiplicationFactor) {
         if (digit < ArabicNumeral.FOUR.getNumeral() && digit >= ArabicNumeral.ONE.getNumeral()) {
             String romanDigitToAdd = correspondence.get(ArabicNumeral.ONE.getNumeral() * multiplicationFactor);
             while (digit >  ArabicNumeral.ONE.getNumeral()) {
@@ -100,6 +112,10 @@ public class NumeralToRomanTransformer {
         }
     }
 
+    public String getRomanNumeral(String arabicNumeral) {
+        return transformToRoman(arabicNumeral);
+    }
+
     public static void main (String args[]) {
         NumeralToRomanTransformer transformer = new NumeralToRomanTransformer();
         transformer.validateNumberOfArgs(args);
@@ -107,7 +123,7 @@ public class NumeralToRomanTransformer {
         int arabicNumeral = transformer.transformToInt(arg);
         transformer.validateArabicNumeral(arabicNumeral);
 
-        String romanNumeral = transformer.transformToRoman(arabicNumeral, arg.length());
+        String romanNumeral = transformer.transformToRoman(arg);
         transformer.printRomanNumeral(romanNumeral);
     }
 }
