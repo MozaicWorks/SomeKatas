@@ -5,6 +5,9 @@ import java.util.Map;
  */
 public class NumeralToRomanTransformer {
 
+    private static final int LOWER_LIMIT = 1;
+    private static final int UPPER_LIMIT = 3000;
+
     Map<Integer, String> correspondence = NumeralToRomanCorrespondence.getCorrespondence();
 
     String transformToRoman(int arabicNumeral, int length) {
@@ -80,27 +83,31 @@ public class NumeralToRomanTransformer {
         System.out.println("The roman numeral is " + romanNumeral);
     }
 
-    public static void main (String args[]) {
+    private int transformToInt(String argNumeral) {
+        return Integer.parseInt(argNumeral);
+    }
 
-        if(args.length > 1) {
-            throw new IllegalArgumentException("Too many arguments, expected only one");
-        }
-
-        if(args.length < 1) {
+    private void validateNumberOfArgs(String args[]) {
+        if(args.length != 1) {
             throw new IllegalArgumentException("Please enter a number between 1 and 3000");
         }
+    }
 
-        String argNumber = args[0];
-
-        int arabicNumeral = Integer.parseInt(argNumber);
-
-        if(arabicNumeral < 1 || arabicNumeral > 3000) {
-            throw new IllegalArgumentException("Invalid number, please enter a number between 1 and 3000");
+    private void validateArabicNumeral(int arabicNumeral) {
+        if(arabicNumeral < LOWER_LIMIT || arabicNumeral > UPPER_LIMIT) {
+            throw new IllegalArgumentException("Invalid number, please enter a number between "+ LOWER_LIMIT
+                    + " and " + UPPER_LIMIT);
         }
+    }
 
+    public static void main (String args[]) {
         NumeralToRomanTransformer transformer = new NumeralToRomanTransformer();
-        String romanNumeral = transformer.transformToRoman(arabicNumeral, argNumber.length());
+        transformer.validateNumberOfArgs(args);
+        String arg = args[0];
+        int arabicNumeral = transformer.transformToInt(arg);
+        transformer.validateArabicNumeral(arabicNumeral);
 
+        String romanNumeral = transformer.transformToRoman(arabicNumeral, arg.length());
         transformer.printRomanNumeral(romanNumeral);
     }
 }
