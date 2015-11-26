@@ -6,8 +6,8 @@ package roman.calculator;
 public class RomanNumeralGrouping {
 
     private String value;
-    private int numberOfValuesToAdd;
-    private int numberOfValuesToSubstract;
+    private int additions;
+    private int subtractions;
 
     public String getValue() {
         return value;
@@ -17,19 +17,19 @@ public class RomanNumeralGrouping {
         this.value = value;
     }
 
-    public int getNumberOfValuesToAdd() {
-        return numberOfValuesToAdd;
+    public int getAdditions() {
+        return additions;
     }
 
-    public void setNumberOfValuesToAdd(int numberOfValuesToAdd) {
-        this.numberOfValuesToAdd = numberOfValuesToAdd;
+    public void setAdditions(int additions) {
+        this.additions = additions;
     }
 
-    public int getNumberOfValuesToSubstract() {
-        return numberOfValuesToSubstract;
+    public int getSubtractions() {
+        return subtractions;
     }
 
-    public void setNumberOfValuesToSubstract(int numberOfValuesToSubstract) {
-        this.numberOfValuesToSubstract = numberOfValuesToSubstract;
+    public void setSubtractions(int subtractions) {
+        this.subtractions = subtractions;
     }
 }

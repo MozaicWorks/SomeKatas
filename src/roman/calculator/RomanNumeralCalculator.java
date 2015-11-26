@@ -46,14 +46,67 @@ public class RomanNumeralCalculator {
 
     private Map<String, RomanNumeralGrouping> addSymbolToMap(String symbol, String nextSymbol,
                                                              Map<String, RomanNumeralGrouping> map) {
+
+        RomanNumeralGrouping grouping = map.get(symbol);
+        boolean isAddition = isPriorityBiggerThanNexts(symbol, nextSymbol);
+        RomanNumeralGrouping groupingToAdd;
         if(map.get(symbol) != null) {
-            RomanNumeralGrouping grouping = map.get(symbol);
-            RomanNumeral romanNumeral = RomanNumeral.valueOf(symbol);
+            groupingToAdd = modifyGrouping(symbol, grouping, isAddition);
+        } else {
+            groupingToAdd = buildNewGrouping(symbol, isAddition);
 
         }
 
+        map.put(symbol, groupingToAdd);
+
         return map;
 
+    }
+
+    private boolean isPriorityBiggerThanNexts(String symbol, String nextSymbol) {
+        RomanNumeral romanNumeral = RomanNumeral.valueOf(symbol);
+        RomanNumeral nexRomanNumeral = RomanNumeral.valueOf(nextSymbol);
+        return romanNumeral.getPriority() > nexRomanNumeral.getPriority();
+    }
+
+    private RomanNumeralGrouping modifyGrouping(String symbol, RomanNumeralGrouping oldGrouping, boolean isAddition) {
+
+        if(isAddition) {
+            return modifyGroupingForAddition(symbol, oldGrouping);
+        }
+        return modifyGroupingForSubtraction(symbol, oldGrouping);
+    }
+
+
+    private RomanNumeralGrouping modifyGroupingForAddition(String symbol, RomanNumeralGrouping oldGrouping) {
+        int additions = oldGrouping.getAdditions();
+        RomanNumeral romanNumeral = RomanNumeral.valueOf(symbol);
+        if(additions == romanNumeral.getMaxNumberOfAppearances()) {
+            // TODO: addSymbolToMap(romanNumeral.getNextNumberToDisplay(), )
+            return oldGrouping;
+        }
+
+        oldGrouping.setAdditions(++additions);
+        return oldGrouping;
+    }
+
+    private RomanNumeralGrouping modifyGroupingForSubtraction(String symbol, RomanNumeralGrouping oldGrouping) {
+        int subtractions = oldGrouping.getSubtractions();
+        oldGrouping.setSubtractions(++subtractions);
+        return oldGrouping;
+    }
+
+
+    private RomanNumeralGrouping buildNewGrouping(String symbol, boolean isAddition) {
+        RomanNumeralGrouping romanNumeralGrouping = new RomanNumeralGrouping();
+        romanNumeralGrouping.setValue(symbol);
+        if(isAddition) {
+            romanNumeralGrouping.setAdditions(1);
+        } else {
+            romanNumeralGrouping.setSubtractions(1);
+        }
+
+        return romanNumeralGrouping;
     }
 
 
