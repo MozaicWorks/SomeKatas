@@ -14,4 +14,9 @@ class RomanCalculatorTests {
     void "I plus I returns II"() {
         assert 'II' == romanCalculator.calculate('I', 'I')
     }
+
+    @Test
+    void "I plus II returns III"() {
+        assert 'III' == romanCalculator.calculate('I', 'II')
+    }
 }
