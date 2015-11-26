@@ -2,7 +2,6 @@ package roman.calculator;
 
 
 
-import java.util.Map;
 import java.util.TreeMap;
 
 /**
@@ -14,7 +13,8 @@ public class RomanNumeralCalculator {
         String concatenatedNumeral = numeral1 + " " + numeral2;
         String[] concatenated = splitToChars(concatenatedNumeral);
         TreeMap<String, RomanNumeralGrouping> grouping = getGrouping(concatenated);
-        return buildStringFromMapGrouping(grouping);
+        TreeMap<String, RomanNumeralGrouping> transformedMap = transformMap(grouping);
+        return buildStringFromMapGrouping(transformedMap);
 
     }
 
@@ -86,34 +86,22 @@ public class RomanNumeralCalculator {
     }
 
     private RomanNumeralGrouping modifyGrouping(String symbol, RomanNumeralGrouping oldGrouping, boolean isAddition) {
-
+        int appearances = oldGrouping.getAppearances();
         if(isAddition) {
-            return modifyGroupingForAddition(symbol, oldGrouping);
+            oldGrouping.setAppearances(++appearances);
+        } else {
+            oldGrouping.setAppearances(--appearances);
         }
-        return modifyGroupingForSubtraction(oldGrouping);
-    }
-
-
-    private RomanNumeralGrouping modifyGroupingForAddition(String symbol, RomanNumeralGrouping oldGrouping) {
-        int additions = oldGrouping.getAdditions();
-        oldGrouping.setAdditions(++additions);
         return oldGrouping;
     }
-
-    private RomanNumeralGrouping modifyGroupingForSubtraction(RomanNumeralGrouping oldGrouping) {
-        int subtractions = oldGrouping.getSubtractions();
-        oldGrouping.setSubtractions(++subtractions);
-        return oldGrouping;
-    }
-
 
     private RomanNumeralGrouping buildNewGrouping(String symbol, boolean isAddition) {
         RomanNumeralGrouping romanNumeralGrouping = new RomanNumeralGrouping();
         romanNumeralGrouping.setValue(symbol);
         if(isAddition) {
-            romanNumeralGrouping.setAdditions(1);
+            romanNumeralGrouping.setAppearances(1);
         } else {
-            romanNumeralGrouping.setSubtractions(1);
+            romanNumeralGrouping.setAppearances(-1);
         }
 
         return romanNumeralGrouping;
@@ -124,15 +112,50 @@ public class RomanNumeralCalculator {
         for(String symbol:map.keySet()) {
             RomanNumeralGrouping grouping = map.get(symbol);
             if(!grouping.needsToBeSubtracted()) {
-                numeral += grouping.getNumeralFromGrouping();
+                numeral += grouping.getGroupedSymbols();
             } else {
-                numeral = numeral.substring(0, numeral.length() - 2) + grouping.getNumeralFromGrouping() +
+                numeral = numeral.substring(0, numeral.length() - 1) + grouping.getGroupedSymbols() +
                         numeral.substring(numeral.length() -1, numeral.length());
             }
         }
 
         return numeral;
 
+    }
+
+
+    private TreeMap<String, RomanNumeralGrouping> transformMap(TreeMap<String, RomanNumeralGrouping> map) {
+        TreeMap<String, RomanNumeralGrouping> newMap = new TreeMap<>(new SymbolComparator());
+        for(String symbol: map.descendingKeySet()) {
+            RomanNumeral romanNumeral = RomanNumeral.valueOf(symbol);
+            RomanNumeralGrouping grouping = map.get(symbol);
+            int appearances = grouping.getAppearances();
+            int maxNumberOfAppearances = romanNumeral.getMaxNumberOfAppearances();
+            if (appearances > maxNumberOfAppearances) {
+
+                appearances = appearances - maxNumberOfAppearances -1;
+                String[] symbols = splitToChars(romanNumeral.getNextNumberToDisplay());
+                for (int i = 0; i < symbols.length; i++) {
+                    String numeral = symbols[i];
+                    if (!numeral.equals(" ")) {
+                        String nextSymbol = getSymbolIfNotOutOfBound(i + 1, symbols);
+                        addSymbolToMap(numeral, nextSymbol, newMap);
+                    }
+
+                }
+
+                RomanNumeralGrouping newGrouping = newMap.get(symbol);
+                if(newGrouping != null) {
+                    int newAppearances = newGrouping.getAppearances();
+                    newGrouping.setAppearances(newAppearances + appearances);
+                }
+
+            }
+            else {
+                newMap.put(symbol, grouping);
+            }
+        }
+        return newMap;
     }
 
 

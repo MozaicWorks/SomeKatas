@@ -1,7 +1,5 @@
 package roman.calculator;
 
-import com.sun.deploy.util.StringUtils;
-
 
 /**
  * Created by mozaic.works on 11/25/15.
@@ -9,9 +7,8 @@ import com.sun.deploy.util.StringUtils;
 public class RomanNumeralGrouping {
 
     private String value;
-    private int additions;
-    private int subtractions;
 
+    private int appearances;
 
     public String getValue() {
         return value;
@@ -21,45 +18,29 @@ public class RomanNumeralGrouping {
         this.value = value;
     }
 
-    public int getAdditions() {
-        return additions;
+
+    public int getAppearances() {
+        return appearances;
     }
 
-    public void setAdditions(int additions) {
-        this.additions = additions;
-    }
-
-    public int getSubtractions() {
-        return subtractions;
-    }
-
-    public void setSubtractions(int subtractions) {
-        this.subtractions = subtractions;
+    public void setAppearances(int appearances) {
+        this.appearances = appearances;
     }
 
     public boolean needsToBeSubtracted() {
-        int numberOfDisplays = additions - subtractions;
-        if(numberOfDisplays < 0) {
-            return true;
-        }
-
-        return false;
+        return appearances < 0;
     }
 
-    public String getNumeralFromGrouping() {
-        int numberOfDisplays = additions - subtractions;
-        if(numberOfDisplays == 0) {
+
+    public String getGroupedSymbols() {
+        if(appearances == 0) {
             return "";
         }
         if (needsToBeSubtracted()) {
-            numberOfDisplays *= -1;
+            appearances *= -1;
         }
 
-        RomanNumeral romanNumeral = RomanNumeral.valueOf(value);
-        if(numberOfDisplays >= romanNumeral.getMaxNumberOfAppearances()) {
-        // TODO: treat this case
-        }
-        return new String(new char[numberOfDisplays]).replace("\0", value);
+        return new String(new char[appearances]).replace("\0", value);
 
     }
 }
