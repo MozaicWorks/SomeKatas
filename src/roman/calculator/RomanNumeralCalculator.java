@@ -60,7 +60,11 @@ public class RomanNumeralCalculator {
                                                                  TreeMap<String, RomanNumeralGrouping> map) {
 
         RomanNumeralGrouping grouping = map.get(symbol);
-        boolean isAddition = isPriorityBiggerThanNexts(symbol, nextSymbol);
+        boolean isAddition = true;
+        if(nextSymbol != null) {
+            isAddition = isPriorityBiggerThanNexts(symbol, nextSymbol);
+        }
+
         RomanNumeralGrouping groupingToAdd;
         if(map.get(symbol) != null) {
             groupingToAdd = modifyGrouping(symbol, grouping, isAddition);
@@ -78,7 +82,7 @@ public class RomanNumeralCalculator {
     private boolean isPriorityBiggerThanNexts(String symbol, String nextSymbol) {
         RomanNumeral romanNumeral = RomanNumeral.valueOf(symbol);
         RomanNumeral nexRomanNumeral = RomanNumeral.valueOf(nextSymbol);
-        return romanNumeral.getPriority() > nexRomanNumeral.getPriority();
+        return romanNumeral.getPriority() >= nexRomanNumeral.getPriority();
     }
 
     private RomanNumeralGrouping modifyGrouping(String symbol, RomanNumeralGrouping oldGrouping, boolean isAddition) {
@@ -92,12 +96,6 @@ public class RomanNumeralCalculator {
 
     private RomanNumeralGrouping modifyGroupingForAddition(String symbol, RomanNumeralGrouping oldGrouping) {
         int additions = oldGrouping.getAdditions();
-        RomanNumeral romanNumeral = RomanNumeral.valueOf(symbol);
-        if(additions == romanNumeral.getMaxNumberOfAppearances()) {
-            // TODO: addSymbolToMap(romanNumeral.getNextNumberToDisplay(), )
-            return oldGrouping;
-        }
-
         oldGrouping.setAdditions(++additions);
         return oldGrouping;
     }

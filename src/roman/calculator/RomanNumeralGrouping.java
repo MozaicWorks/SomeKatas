@@ -54,6 +54,11 @@ public class RomanNumeralGrouping {
         if (needsToBeSubtracted()) {
             numberOfDisplays *= -1;
         }
+
+        RomanNumeral romanNumeral = RomanNumeral.valueOf(value);
+        if(numberOfDisplays >= romanNumeral.getMaxNumberOfAppearances()) {
+        // TODO: treat this case
+        }
         return new String(new char[numberOfDisplays]).replace("\0", value);
 
     }
