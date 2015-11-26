@@ -14,8 +14,14 @@ class RomanCalculator {
         if (firstRomanNoDigit.symbol == secondRomanNoDigit.symbol && firstRomanNoDigit.doubledSymbol){
             return firstRomanNoDigit.doubledSymbol
         }
-        def positionedSumTerms = [firstRomanNoDigit, secondRomanNoDigit].sort{it.endPosition}.reverse().collect{it
-                .symbol}
+        def positionedSumTerms = addNumbersInADigitsArray(firstRomanNoDigit, secondRomanNoDigit)
         return positionedSumTerms.join().toString()
+    }
+
+    private addNumbersInADigitsArray(RomanDigit firstRomanNoDigit, RomanDigit secondRomanNoDigit) {
+        [firstRomanNoDigit, secondRomanNoDigit]
+                .sort { it.endPosition }
+                .reverse()
+                .collect {it.symbol}
     }
 }
