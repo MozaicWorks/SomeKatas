@@ -1,6 +1,6 @@
 class RomanCalculator {
 
-    def romanDigits = ['I':0, 'V':1]
+    def romanDigits = ['I':0, 'V':1, 'X':2]
 
     def calculate(firstRomanNo, secondRomanNo) {
         def firstRomanNoDigit = new RomanDigit(symbol: firstRomanNo, endPosition: romanDigits.get(firstRomanNo))
