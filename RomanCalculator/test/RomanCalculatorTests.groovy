@@ -49,4 +49,19 @@ class RomanCalculatorTests {
     void "I plus M returns MI"() {
         assert 'MI' == romanCalculator.calculate('I', 'M')
     }
+
+    @Test
+    void "V plus X returns XV"() {
+        assert 'XV' == romanCalculator.calculate('V', 'X')
+    }
+
+    @Test
+    void "X plus V returns XV"() {
+        assert 'XV' == romanCalculator.calculate('X', 'V')
+    }
+
+    @Test
+    void "X plus D returns DX"() {
+        assert 'DX' == romanCalculator.calculate('X', 'D')
+    }
 }
