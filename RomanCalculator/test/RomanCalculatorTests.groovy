@@ -67,7 +67,6 @@ class RomanCalculatorTests {
     }
 
     @Test
-    @Ignore
     void "V plus V returns X"() {
         assert 'X' == romanCalculator.calculate('V', 'V')
     }

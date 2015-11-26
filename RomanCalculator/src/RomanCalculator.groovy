@@ -11,6 +11,9 @@ class RomanCalculator {
     def calculate(firstRomanNo, secondRomanNo) {
         def firstRomanNoDigit = romanDigits.get(firstRomanNo)
         def secondRomanNoDigit = romanDigits.get(secondRomanNo)
+        if (firstRomanNoDigit.symbol == secondRomanNoDigit.symbol && firstRomanNoDigit.doubledSymbol){
+            return firstRomanNoDigit.doubledSymbol
+        }
         def positionedSumTerms = [firstRomanNoDigit, secondRomanNoDigit].sort{it.endPosition}.reverse().collect{it
                 .symbol}
         return positionedSumTerms.join().toString()
