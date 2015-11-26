@@ -82,7 +82,7 @@ public class RomanNumeralCalculator {
     private boolean isPriorityBiggerThanNexts(String symbol, String nextSymbol) {
         RomanNumeral romanNumeral = RomanNumeral.valueOf(symbol);
         RomanNumeral nexRomanNumeral = RomanNumeral.valueOf(nextSymbol);
-        return romanNumeral.getPriority() >= nexRomanNumeral.getPriority();
+        return romanNumeral.getPriority() <= nexRomanNumeral.getPriority();
     }
 
     private RomanNumeralGrouping modifyGrouping(String symbol, RomanNumeralGrouping oldGrouping, boolean isAddition) {

@@ -4,13 +4,13 @@ package roman.calculator;
  * Created by mozaic.works on 11/25/15.
  */
 public enum RomanNumeral {
-    I(3, "IV", 1),
-    V(1, "X", 2),
-    X(3, "XL", 3),
+    I(3, "IV", 7),
+    V(1, "X", 6),
+    X(3, "XL", 5),
     L(1, "C", 4),
-    C(3, "CD", 5),
-    D(1, "M", 6),
-    M(3, "", 7);
+    C(3, "CD", 3),
+    D(1, "M", 2),
+    M(3, "", 1);
 
     private int maxNumberOfAppearances;
     private String nextNumberToDisplay;

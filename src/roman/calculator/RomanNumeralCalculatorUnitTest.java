@@ -12,7 +12,7 @@ public class RomanNumeralCalculatorUnitTest {
 
 
     @Test
-    public void testAdd_onePlusOne() {
+    public void testAdd_onePlusOneIsTwo() {
         RomanNumeralCalculator calculator = new RomanNumeralCalculator();
         String result = calculator.add("I", "I");
 
@@ -20,7 +20,7 @@ public class RomanNumeralCalculatorUnitTest {
     }
 
     @Test
-    public void testAdd_onePlusTwo() {
+    public void testAdd_onePlusTwoIsThree() {
         RomanNumeralCalculator calculator = new RomanNumeralCalculator();
         String result = calculator.add("II", "I");
 
@@ -30,7 +30,7 @@ public class RomanNumeralCalculatorUnitTest {
 
     @Test
     @Ignore
-    public void testAdd_onePlusThree() {
+    public void testAdd_onePlusThreeIsFour() {
         RomanNumeralCalculator calculator = new RomanNumeralCalculator();
         String result = calculator.add("I", "III");
 
@@ -38,11 +38,55 @@ public class RomanNumeralCalculatorUnitTest {
     }
 
     @Test
-    public void testAdd_FourPlusOne() {
+    public void testAdd_OnePlusFourIsFive() {
         RomanNumeralCalculator calculator = new RomanNumeralCalculator();
-        String result = calculator.add("IV", "I");
+        String result = calculator.add("I", "IV");
 
         assertEquals("V", result);
     }
+
+    @Test
+    public void testAdd_OnePlusFiveIsSix() {
+        RomanNumeralCalculator calculator = new RomanNumeralCalculator();
+        String result = calculator.add("I", "V");
+
+        assertEquals("VI", result);
+    }
+
+    @Test
+    public void testAdd_OnePlusSixIsSeven() {
+        RomanNumeralCalculator calculator = new RomanNumeralCalculator();
+        String result = calculator.add("I", "VI");
+
+        assertEquals("VII", result);
+    }
+
+
+    @Test
+    public void testAdd_OnePlusSevenIsEight() {
+        RomanNumeralCalculator calculator = new RomanNumeralCalculator();
+        String result = calculator.add("I", "VII");
+
+        assertEquals("VIII", result);
+    }
+
+
+    @Test
+    @Ignore
+    public void testAdd_OnePlusEightIsNine() {
+        RomanNumeralCalculator calculator = new RomanNumeralCalculator();
+        String result = calculator.add("I", "VIII");
+
+        assertEquals("IX", result);
+    }
+
+    @Test
+    public void testAdd_OnePlusNineIsTen() {
+        RomanNumeralCalculator calculator = new RomanNumeralCalculator();
+        String result = calculator.add("I", "IX");
+
+        assertEquals("X", result);
+    }
+
 
 }
