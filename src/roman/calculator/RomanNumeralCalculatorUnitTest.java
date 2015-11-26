@@ -29,6 +29,7 @@ public class RomanNumeralCalculatorUnitTest {
 
 
     @Test
+    @Ignore
     public void testAdd_onePlusThreeIsFour() {
         RomanNumeralCalculator calculator = new RomanNumeralCalculator();
         String result = calculator.add("I", "III");

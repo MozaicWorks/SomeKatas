@@ -2,12 +2,17 @@ package roman.calculator;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.TreeMap;
+import java.util.function.BooleanSupplier;
 
 /**
  * Created by mozaic.works on 11/25/15.
  */
 public class RomanNumeralCalculator {
+
+    List<RomanNumeral> listOfProcessedSymbols = new ArrayList<>();
 
     public String add(String numeral1, String numeral2) {
         String concatenatedNumeral = numeral1 + " " + numeral2;
@@ -21,6 +26,7 @@ public class RomanNumeralCalculator {
     private String[] splitToChars(String numeral) {
         return numeral.split("(?!^)");
     }
+
 
 
 
@@ -86,14 +92,26 @@ public class RomanNumeralCalculator {
     }
 
     private RomanNumeralGrouping modifyGrouping(String symbol, RomanNumeralGrouping oldGrouping, boolean isAddition) {
+        RomanNumeral numeral = RomanNumeral.valueOf(symbol);
         int appearances = oldGrouping.getAppearances();
+
         if(isAddition) {
-            oldGrouping.setAppearances(++appearances);
+            int maxNumberOfAppearances = numeral.getMaxNumberOfAppearances();
+            if(appearances == maxNumberOfAppearances) {
+                oldGrouping.setCarry(true);
+                oldGrouping.setAppearances(0);
+            } else {
+                oldGrouping.setAppearances(++appearances);
+            }
+
         } else {
             oldGrouping.setAppearances(--appearances);
         }
         return oldGrouping;
     }
+
+
+
 
     private RomanNumeralGrouping buildNewGrouping(String symbol, boolean isAddition) {
         RomanNumeralGrouping romanNumeralGrouping = new RomanNumeralGrouping();
@@ -134,7 +152,7 @@ public class RomanNumeralCalculator {
             if (appearances > maxNumberOfAppearances) {
 
                 appearances = appearances - maxNumberOfAppearances -1;
-                String[] symbols = splitToChars(romanNumeral.getNextNumberToDisplay());
+                String[] symbols = splitToChars(romanNumeral.getSymbolWithCarry());
                 for (int i = 0; i < symbols.length; i++) {
                     String numeral = symbols[i];
                     if (!numeral.equals(" ")) {

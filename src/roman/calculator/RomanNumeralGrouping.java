@@ -10,6 +10,8 @@ public class RomanNumeralGrouping {
 
     private int appearances;
 
+    private boolean carry;
+
     public String getValue() {
         return value;
     }
@@ -25,6 +27,14 @@ public class RomanNumeralGrouping {
 
     public void setAppearances(int appearances) {
         this.appearances = appearances;
+    }
+
+    public boolean isCarry() {
+        return carry;
+    }
+
+    public void setCarry(boolean carry) {
+        this.carry = carry;
     }
 
     public boolean needsToBeSubtracted() {
