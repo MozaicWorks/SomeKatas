@@ -29,4 +29,24 @@ class RomanCalculatorTests {
     void "I plus X returns XI"() {
         assert 'XI' == romanCalculator.calculate('I', 'X')
     }
+
+    @Test
+    void "I plus L returns LI"() {
+        assert 'LI' == romanCalculator.calculate('I', 'L')
+    }
+
+    @Test
+    void "I plus C returns CI"() {
+        assert 'CI' == romanCalculator.calculate('I', 'C')
+    }
+
+    @Test
+    void "I plus D returns DI"() {
+        assert 'DI' == romanCalculator.calculate('I', 'D')
+    }
+
+    @Test
+    void "I plus M returns MI"() {
+        assert 'MI' == romanCalculator.calculate('I', 'M')
+    }
 }
