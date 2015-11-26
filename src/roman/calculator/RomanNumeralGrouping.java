@@ -1,5 +1,8 @@
 package roman.calculator;
 
+import com.sun.deploy.util.StringUtils;
+
+
 /**
  * Created by mozaic.works on 11/25/15.
  */
@@ -8,6 +11,7 @@ public class RomanNumeralGrouping {
     private String value;
     private int additions;
     private int subtractions;
+
 
     public String getValue() {
         return value;
@@ -31,5 +35,26 @@ public class RomanNumeralGrouping {
 
     public void setSubtractions(int subtractions) {
         this.subtractions = subtractions;
+    }
+
+    public boolean needsToBeSubtracted() {
+        int numberOfDisplays = additions - subtractions;
+        if(numberOfDisplays < 0) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public String getNumeralFromGrouping() {
+        int numberOfDisplays = additions - subtractions;
+        if(numberOfDisplays == 0) {
+            return "";
+        }
+        if (needsToBeSubtracted()) {
+            numberOfDisplays *= -1;
+        }
+        return new String(new char[numberOfDisplays]).replace("\0", value);
+
     }
 }

@@ -1,7 +1,9 @@
 package roman.calculator;
 
-import java.util.HashMap;
+
+
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by mozaic.works on 11/25/15.
@@ -9,12 +11,19 @@ import java.util.Map;
 public class RomanNumeralCalculator {
 
     public String add(String numeral1, String numeral2) {
-        return null;
+        String concatenatedNumeral = numeral1 + " " + numeral2;
+        String[] concatenated = splitToChars(concatenatedNumeral);
+        TreeMap<String, RomanNumeralGrouping> grouping = getGrouping(concatenated);
+        return buildStringFromMapGrouping(grouping);
+
     }
 
     private String[] splitToChars(String numeral) {
         return numeral.split("(?!^)");
     }
+
+
+
 
     /**
      * constructs a map between the value of a roman symbol (ex I, V, X, etc)
@@ -22,12 +31,15 @@ public class RomanNumeralCalculator {
      * @param romanSymbols
      * @return
      */
-    private Map<String, RomanNumeralGrouping> getGrouping(String[] romanSymbols) {
-        Map<String, RomanNumeralGrouping> groupingMap = new HashMap<>();
+    private TreeMap<String, RomanNumeralGrouping> getGrouping(String[] romanSymbols) {
+        TreeMap<String, RomanNumeralGrouping> groupingMap = new TreeMap<>(new SymbolComparator());
         for(int i = 0; i < romanSymbols.length; i++) {
             String symbol = romanSymbols[i];
-            String nextSymbol = getSymbolIfNotOutOfBound(i+1, romanSymbols);
-            addSymbolToMap(symbol, nextSymbol, groupingMap);
+            if(!symbol.equals(" ")) {
+                String nextSymbol = getSymbolIfNotOutOfBound(i+1, romanSymbols);
+                addSymbolToMap(symbol, nextSymbol, groupingMap);
+            }
+
         }
 
         return groupingMap;
@@ -36,7 +48,7 @@ public class RomanNumeralCalculator {
 
 
     private String getSymbolIfNotOutOfBound(int position, String[] romanSymbols) {
-        if(position < romanSymbols.length) {
+        if(position < romanSymbols.length && !romanSymbols[position].equals(" ")) {
             return romanSymbols[position];
         }
 
@@ -44,8 +56,8 @@ public class RomanNumeralCalculator {
     }
 
 
-    private Map<String, RomanNumeralGrouping> addSymbolToMap(String symbol, String nextSymbol,
-                                                             Map<String, RomanNumeralGrouping> map) {
+    private TreeMap<String, RomanNumeralGrouping> addSymbolToMap(String symbol, String nextSymbol,
+                                                                 TreeMap<String, RomanNumeralGrouping> map) {
 
         RomanNumeralGrouping grouping = map.get(symbol);
         boolean isAddition = isPriorityBiggerThanNexts(symbol, nextSymbol);
@@ -74,7 +86,7 @@ public class RomanNumeralCalculator {
         if(isAddition) {
             return modifyGroupingForAddition(symbol, oldGrouping);
         }
-        return modifyGroupingForSubtraction(symbol, oldGrouping);
+        return modifyGroupingForSubtraction(oldGrouping);
     }
 
 
@@ -90,7 +102,7 @@ public class RomanNumeralCalculator {
         return oldGrouping;
     }
 
-    private RomanNumeralGrouping modifyGroupingForSubtraction(String symbol, RomanNumeralGrouping oldGrouping) {
+    private RomanNumeralGrouping modifyGroupingForSubtraction(RomanNumeralGrouping oldGrouping) {
         int subtractions = oldGrouping.getSubtractions();
         oldGrouping.setSubtractions(++subtractions);
         return oldGrouping;
@@ -107,6 +119,22 @@ public class RomanNumeralCalculator {
         }
 
         return romanNumeralGrouping;
+    }
+
+    private String buildStringFromMapGrouping(TreeMap<String, RomanNumeralGrouping> map) {
+        String numeral = "";
+        for(String symbol:map.keySet()) {
+            RomanNumeralGrouping grouping = map.get(symbol);
+            if(!grouping.needsToBeSubtracted()) {
+                numeral += grouping.getNumeralFromGrouping();
+            } else {
+                numeral = numeral.substring(0, numeral.length() - 2) + grouping.getNumeralFromGrouping() +
+                        numeral.substring(numeral.length() -1, numeral.length());
+            }
+        }
+
+        return numeral;
+
     }
 
 
