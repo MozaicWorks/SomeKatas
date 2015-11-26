@@ -1,4 +1,5 @@
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Test
 
 class RomanCalculatorTests {
@@ -13,11 +14,6 @@ class RomanCalculatorTests {
     @Test
     void "I plus I returns II"() {
         assert 'II' == romanCalculator.calculate('I', 'I')
-    }
-
-    @Test
-    void "I plus II returns III"() {
-        assert 'III' == romanCalculator.calculate('I', 'II')
     }
 
     @Test
@@ -68,5 +64,11 @@ class RomanCalculatorTests {
     @Test
     void "X plus X returns XX"() {
         assert 'XX' == romanCalculator.calculate('X', 'X')
+    }
+
+    @Test
+    @Ignore
+    void "V plus V returns X"() {
+        assert 'X' == romanCalculator.calculate('V', 'V')
     }
 }
