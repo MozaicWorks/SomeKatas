@@ -11,14 +11,26 @@ class RomanCalculator {
     def calculate(firstRomanNo, secondRomanNo) {
         def firstRomanNoDigit = romanDigits.get(firstRomanNo)
         def secondRomanNoDigit = romanDigits.get(secondRomanNo)
-        if (firstRomanNoDigit.symbol == secondRomanNoDigit.symbol && firstRomanNoDigit.doubledSymbol){
+        if (isTwiceAppearanceOfUniqueDigit(firstRomanNoDigit, secondRomanNoDigit)){
             return firstRomanNoDigit.doubledSymbol
         }
-        def positionedSumTerms = addNumbersInADigitsArray(firstRomanNoDigit, secondRomanNoDigit)
+        def positionedSumTerms = makeTheSumOfTheDigitsInASymbolsArray(firstRomanNoDigit, secondRomanNoDigit)
         return positionedSumTerms.join().toString()
     }
 
-    private addNumbersInADigitsArray(RomanDigit firstRomanNoDigit, RomanDigit secondRomanNoDigit) {
+    private isTwiceAppearanceOfUniqueDigit(RomanDigit firstRomanNoDigit, RomanDigit secondRomanNoDigit) {
+        sameSymbolSumTerms(firstRomanNoDigit, secondRomanNoDigit) && cannotAppearTwice(firstRomanNoDigit)
+    }
+
+    private cannotAppearTwice(RomanDigit firstRomanNoDigit) {
+        firstRomanNoDigit.doubledSymbol
+    }
+
+    private sameSymbolSumTerms(RomanDigit firstRomanNoDigit, RomanDigit secondRomanNoDigit) {
+        firstRomanNoDigit.symbol == secondRomanNoDigit.symbol
+    }
+
+    private makeTheSumOfTheDigitsInASymbolsArray(RomanDigit firstRomanNoDigit, RomanDigit secondRomanNoDigit) {
         [firstRomanNoDigit, secondRomanNoDigit]
                 .sort { it.endPosition }
                 .reverse()
