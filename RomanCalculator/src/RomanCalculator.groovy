@@ -41,19 +41,28 @@ class RomanCalculator {
         }
     }
 
-    private getFromMapTheRomanDigitsWithAtLeastOneAppearance() {
-        return romanDigits.values().findAll{it.numberOfAppearances > 0}
-    }
+//    private getFromMapTheRomanDigitsWithAtLeastOneAppearance() {
+//        return romanDigits.values().findAll{it.numberOfAppearances > 0}
+//    }
+//
+//    private orderRomanDigitsByEndposition(List<RomanDigit> digits) {
+//
+//        return digits.sort{it.endPosition}.reverse()
+//    }
 
-    private orderRomanDigitsByEndposition(List<RomanDigit> digits) {
-        digits.sort{it.endPosition}.reverse()
+    private getDigitsWithAtLeastOneAppearanceInOrder() {
+        return romanDigits.values()
+                .findAll{it.numberOfAppearances > 0}
+                .sort{it.endPosition}
+                .reverse()
     }
 
 
 
     private buildSumUsingTheRomanDigitMap() {
-        def list = getFromMapTheRomanDigitsWithAtLeastOneAppearance()
-        orderRomanDigitsByEndposition(list)
+//        def list = getFromMapTheRomanDigitsWithAtLeastOneAppearance()
+//        orderRomanDigitsByEndposition(list)
+        def list = getDigitsWithAtLeastOneAppearanceInOrder()
         def digits = [];
         for(RomanDigit romanDigit:list) {
             for(int i = 0; i < romanDigit.numberOfAppearances; i++) {
