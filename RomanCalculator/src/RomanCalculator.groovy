@@ -13,8 +13,8 @@ class RomanCalculator {
 
     def calculate(String firstRomanNo, String secondRomanNo) {
         String[] digits = concatenateRomanNumbersInDigitArray(firstRomanNo, secondRomanNo);
-        addAppearancesToRomanDigits(digits)
-        return getDigitsWithProperAppearances()
+        countAppearancesOfDigitsAndModifyTheMap(digits)
+        return buildSumUsingTheRomanDigitMap()
     }
 
     private splitIntoDigitArray(String romanNumber) {
@@ -28,7 +28,7 @@ class RomanCalculator {
 
 
 
-    private void addAppearancesToRomanDigits(String[] digits) {
+    private void countAppearancesOfDigitsAndModifyTheMap(String[] digits) {
         for (String digit : digits) {
             RomanDigit romanDigit = romanDigits.get(digit);
             if (romanDigit.doubledSymbol && romanDigit.numberOfAppearances == 1) {
@@ -41,7 +41,7 @@ class RomanCalculator {
         }
     }
 
-    private getRomanDigitsWithAtLeastOneAppearance() {
+    private getFromMapTheRomanDigitsWithAtLeastOneAppearance() {
         return romanDigits.values().findAll{it.numberOfAppearances > 0}
     }
 
@@ -51,8 +51,8 @@ class RomanCalculator {
 
 
 
-    private getDigitsWithProperAppearances() {
-        def list = getRomanDigitsWithAtLeastOneAppearance()
+    private buildSumUsingTheRomanDigitMap() {
+        def list = getFromMapTheRomanDigitsWithAtLeastOneAppearance()
         orderRomanDigitsByEndposition(list)
         def digits = [];
         for(RomanDigit romanDigit:list) {
@@ -62,6 +62,8 @@ class RomanCalculator {
         }
         return digits.join();
     }
+
+
 
 
 
