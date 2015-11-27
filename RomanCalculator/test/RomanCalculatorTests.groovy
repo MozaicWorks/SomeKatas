@@ -86,5 +86,10 @@ class RomanCalculatorTests {
         assert 'VIII' == romanCalculator.calculate('I', 'VII')
     }
 
+    @Test
+    void "I plus XI returns XII"() {
+        assert 'XII' == romanCalculator.calculate('I', 'XI')
+    }
+
 
 }
