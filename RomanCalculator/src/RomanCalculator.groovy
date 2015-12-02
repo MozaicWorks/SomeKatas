@@ -53,7 +53,7 @@ class RomanCalculator {
             } else if(romanDigit.quadrupledSymbol && romanDigit.numberOfAppearances > 3) {
                     RomanDigit quadrupledSymbol = romanDigits.get(romanDigit.quadrupledSymbol)
                     quadrupledSymbol.numberOfAppearances++
-                    romanDigit.numberOfAppearances = romanDigit.numberOfAppearances - 4;
+                    romanDigit.numberOfAppearances = romanDigit.numberOfAppearances - 5;
                     mapChanged = true
             }
         }
@@ -93,9 +93,18 @@ class RomanCalculator {
 
     private buildSumUsingTheRomanDigitMap() {
         def list = getDigitsWithAtLeastOneAppearanceInOrder()
-        def digits = [];
-        for(RomanDigit romanDigit:list) {
-            for(def i = 0; i < romanDigit.numberOfAppearances; i++) {
+        def digits = []
+        def romanDigit
+        def tempDigit
+        for(int i = 0; i < list.size(); i ++ ) {
+            romanDigit = list[i]
+            if(romanDigit.numberOfAppearances < 0) {
+                def lengthOfDigits = digits.size()
+                tempDigit = digits.get(lengthOfDigits - 1)
+                digits.set(lengthOfDigits - 1, romanDigit.symbol)
+                digits.add(tempDigit)
+            }
+            for(def j = 0; j < romanDigit.numberOfAppearances; j++) {
                 digits.add(romanDigit.symbol)
             }
         }
