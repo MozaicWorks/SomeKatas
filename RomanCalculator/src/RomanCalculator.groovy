@@ -17,16 +17,14 @@ class RomanCalculator {
         return buildSumUsingTheRomanDigitMap()
     }
 
-    private splitIntoDigitArray(String romanNumber) {
-        return romanNumber.split("(?!^)")
-    }
-
     private concatenateRomanNumbersInDigitArray(String firstRomanNo, String secondRomanNo) {
         def concatenatedNo = firstRomanNo + secondRomanNo
         return splitIntoDigitArray(concatenatedNo)
     }
 
-
+    private splitIntoDigitArray(String romanNumber) {
+        return romanNumber.split("(?!^)")
+    }
 
     private void countAppearancesOfDigitsAndModifyTheMap(String[] digits) {
         for (String digit : digits) {
@@ -55,7 +53,7 @@ class RomanCalculator {
         def list = getDigitsWithAtLeastOneAppearanceInOrder()
         def digits = [];
         for(RomanDigit romanDigit:list) {
-            for(int i = 0; i < romanDigit.numberOfAppearances; i++) {
+            for(def i = 0; i < romanDigit.numberOfAppearances; i++) {
                 digits.add(romanDigit.symbol)
             }
         }
