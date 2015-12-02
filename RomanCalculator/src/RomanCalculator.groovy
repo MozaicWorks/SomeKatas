@@ -41,14 +41,6 @@ class RomanCalculator {
         }
     }
 
-//    private getFromMapTheRomanDigitsWithAtLeastOneAppearance() {
-//        return romanDigits.values().findAll{it.numberOfAppearances > 0}
-//    }
-//
-//    private orderRomanDigitsByEndposition(List<RomanDigit> digits) {
-//
-//        return digits.sort{it.endPosition}.reverse()
-//    }
 
     private getDigitsWithAtLeastOneAppearanceInOrder() {
         return romanDigits.values()
@@ -60,8 +52,6 @@ class RomanCalculator {
 
 
     private buildSumUsingTheRomanDigitMap() {
-//        def list = getFromMapTheRomanDigitsWithAtLeastOneAppearance()
-//        orderRomanDigitsByEndposition(list)
         def list = getDigitsWithAtLeastOneAppearanceInOrder()
         def digits = [];
         for(RomanDigit romanDigit:list) {
