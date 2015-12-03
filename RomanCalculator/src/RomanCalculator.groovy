@@ -18,10 +18,10 @@ class RomanCalculator {
 
 
 	private void countAndStoreNumberOfAppearancesOfDigit(String romanNumber) {
-		String[] digits = romanNumber.collect { character -> character }
-		for (def i = 0; i < digits.length; i++) {
-			String digit = digits[i]
-			updateNumberOfAppearancesForRomanDigit(digit, digits, i)
+		String[] digits = romanNumber.collect { it }
+
+		romanNumber.eachWithIndex { digit, index ->
+			updateNumberOfAppearancesForRomanDigit(digit, digits, index)
 		}
 	}
 
