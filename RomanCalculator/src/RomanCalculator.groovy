@@ -73,8 +73,8 @@ class RomanCalculator {
 			return true
 		}
 
-		RomanDigit romanDigit = romanDigits.get(digit)
-		RomanDigit nextRomanDigit = romanDigits.get(nextDigit)
+		RomanDigit romanDigit = romanDigits[digit]
+		RomanDigit nextRomanDigit = romanDigits[nextDigit]
 		return romanDigit.biggerThan(nextRomanDigit)
 	}
 
