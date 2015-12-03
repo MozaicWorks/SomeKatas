@@ -57,17 +57,19 @@ class RomanCalculator {
 	}
 
 	boolean isCurrentRomanDigitBiggerThanNextRomanDigit(String[] digits, int i) {
-		String digit = digits[i]
-
-		def atTheEndOfTheNumber = (i + 1 >= digits.length)
-		if (atTheEndOfTheNumber) {
-			return true
-		}
-
-		String nextDigit = digits[i + 1]
-		RomanDigit romanDigit = romanDigits[digit]
-		RomanDigit nextRomanDigit = romanDigits[nextDigit]
+		RomanDigit romanDigit = computeRomanDigit(i, digits)
+		RomanDigit nextRomanDigit = computeRomanDigit(i + 1, digits)
 		return romanDigit.biggerThan(nextRomanDigit)
+	}
+
+	private RomanDigit computeRomanDigit(int i, String[] digits) {
+		RomanDigit nextRomanDigit = new RomanDigit(endPosition: -1)
+		def atTheEndOfTheNumber = (i >= digits.length)
+		if (!atTheEndOfTheNumber) {
+			String nextDigit = digits[i]
+			nextRomanDigit = romanDigits[nextDigit]
+		}
+		nextRomanDigit
 	}
 
 
