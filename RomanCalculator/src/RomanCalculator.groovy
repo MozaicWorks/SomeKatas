@@ -18,17 +18,17 @@ class RomanCalculator {
 
 
 	private void countAndStoreNumberOfAppearancesOfDigit(String romanNumber) {
-		romanNumber.eachWithIndex { digit, index ->
-			updateNumberOfAppearancesForRomanDigit(digit, romanNumber, index)
+		romanNumber.eachWithIndex { digit, positionOfDigitInNumber ->
+			updateNumberOfAppearancesForRomanDigit(digit, romanNumber, positionOfDigitInNumber)
 		}
 	}
 
-	private void updateNumberOfAppearancesForRomanDigit(String digit, String romanNumber, int i) {
+	private void updateNumberOfAppearancesForRomanDigit(String digit, String romanNumber, int positionOfDigitInNumber) {
 		RomanDigit romanDigit = romanDigits.get(digit)
 
 		int count = romanDigit.numberOfAppearances
 
-		if (isCurrentRomanDigitBiggerThanNextRomanDigit(romanNumber, i)) {
+		if (isCurrentRomanDigitBiggerThanNextRomanDigit(romanNumber, positionOfDigitInNumber)) {
 			count++
 		} else {
 			count--
@@ -59,17 +59,17 @@ class RomanCalculator {
 		}
 	}
 
-	boolean isCurrentRomanDigitBiggerThanNextRomanDigit(String romanNumber, int i) {
-		RomanDigit romanDigit = computeRomanDigit(i, romanNumber)
-		RomanDigit nextRomanDigit = computeRomanDigit(i + 1, romanNumber)
+	boolean isCurrentRomanDigitBiggerThanNextRomanDigit(String romanNumber, int positionOfDigitInNumber) {
+		RomanDigit romanDigit = computeRomanDigit(positionOfDigitInNumber, romanNumber)
+		RomanDigit nextRomanDigit = computeRomanDigit(positionOfDigitInNumber + 1, romanNumber)
 		return romanDigit.biggerThan(nextRomanDigit)
 	}
 
-	private RomanDigit computeRomanDigit(int i, String romanNumber) {
+	private RomanDigit computeRomanDigit(int positionOfDigitInNumber, String romanNumber) {
 		RomanDigit nextRomanDigit = new RomanDigit(endPosition: -1)
-		def atTheEndOfTheNumber = (i >= romanNumber.size())
+		def atTheEndOfTheNumber = (positionOfDigitInNumber >= romanNumber.size())
 		if (!atTheEndOfTheNumber) {
-			String nextDigit = romanNumber[i]
+			String nextDigit = romanNumber[positionOfDigitInNumber]
 			nextRomanDigit = romanDigits[nextDigit]
 		}
 		return nextRomanDigit
