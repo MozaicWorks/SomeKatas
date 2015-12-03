@@ -29,7 +29,9 @@ class RomanCalculator {
 		RomanDigit romanDigit = romanDigits.get(digit)
 
 		int count = romanDigit.numberOfAppearances
-		if (isCurrentRomanDigitBiggerThanNextRomanDigit(digits, i)) {
+		String romanNumber = digits.join()
+
+		if (isCurrentRomanDigitBiggerThanNextRomanDigit(romanNumber, i)) {
 			count++
 		} else {
 			count--
@@ -60,8 +62,7 @@ class RomanCalculator {
 		}
 	}
 
-	boolean isCurrentRomanDigitBiggerThanNextRomanDigit(String[] digits, int i) {
-		String romanNumber = digits.join()
+	boolean isCurrentRomanDigitBiggerThanNextRomanDigit(String romanNumber, int i) {
 		RomanDigit romanDigit = computeRomanDigit(i, romanNumber)
 		RomanDigit nextRomanDigit = computeRomanDigit(i + 1, romanNumber)
 		return romanDigit.biggerThan(nextRomanDigit)
