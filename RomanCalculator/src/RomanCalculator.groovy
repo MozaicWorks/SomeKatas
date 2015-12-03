@@ -18,12 +18,9 @@ class RomanCalculator {
 
 	private static concatenateRomanNumbersInDigitArray(String firstRomanNo, String secondRomanNo) {
 		def concatenatedNo = firstRomanNo + " " + secondRomanNo
-		return splitIntoDigitArray(concatenatedNo)
+		return concatenatedNo.collect{character -> character}
 	}
 
-	private static splitIntoDigitArray(String romanNumber) {
-		return romanNumber.split("(?!^)")
-	}
 
 	private void modifyTheAppearanceFieldOfMap(String[] digits) {
 		for (def i = 0; i < digits.length; i++) {
