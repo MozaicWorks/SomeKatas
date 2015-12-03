@@ -65,11 +65,6 @@ class RomanCalculator {
 		}
 
 		String nextDigit = digits[i + 1]
-		def firstNumberHasEnded = (nextDigit == " ")
-		if (firstNumberHasEnded) {
-			return true
-		}
-
 		RomanDigit romanDigit = romanDigits[digit]
 		RomanDigit nextRomanDigit = romanDigits[nextDigit]
 		return romanDigit.biggerThan(nextRomanDigit)
