@@ -27,7 +27,7 @@ class RomanCalculator {
 				RomanDigit romanDigit = romanDigits.get(digit)
 
 				int count = romanDigit.numberOfAppearances
-				if (isDigitsEndPositionBiggerThanNexts(digits, i)) {
+				if (isCurrentRomanDigitBiggerThanNextRomanDigit(digits, i)) {
 					count ++
 				} else {
 					count--
@@ -59,19 +59,25 @@ class RomanCalculator {
 		}
 	}
 
-	boolean isDigitsEndPositionBiggerThanNexts(String[] digits, int i) {
+	boolean isCurrentRomanDigitBiggerThanNextRomanDigit(String[] digits, int i) {
 		String digit = digits[i]
-		if (i + 1 >= digits.length) {
+
+		def atTheEndOfTheNumber = (i + 1 >= digits.length)
+		if (atTheEndOfTheNumber) {
 			return true
 		}
+
 		String nextDigit = digits[i + 1]
-		if (nextDigit == " ") {
+		def firstNumberHasEnded = (nextDigit == " ")
+		if (firstNumberHasEnded) {
 			return true
 		}
+
 		RomanDigit romanDigit = romanDigits.get(digit)
 		RomanDigit nextRomanDigit = romanDigits.get(nextDigit)
-		return romanDigit.endPosition >= nextRomanDigit.endPosition
+		return romanDigit.biggerThan(nextRomanDigit)
 	}
+
 
 	private getDigitsWithAtLeastOneAppearanceInOrder() {
 		return romanDigits.values()
