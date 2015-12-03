@@ -10,28 +10,29 @@ class RomanCalculator {
 
 
 	def calculate(String firstRomanNo, String secondRomanNo) {
-		String[] digits = concatenateRomanNumbersInDigitArray(firstRomanNo, secondRomanNo);
-		modifyTheAppearanceFieldOfMap(digits)
+		def concatenatedNo = firstRomanNo + " " + secondRomanNo
+		String[] digits = concatenatedNo.collect{ character -> character}
+
+		countAndStoreNumberOfAppearancesOfDigit(digits)
 		transformDoubledAndQuadrupledSymbol()
 		return buildSumUsingTheRomanDigitMap()
 	}
 
-	private static concatenateRomanNumbersInDigitArray(String firstRomanNo, String secondRomanNo) {
-		def concatenatedNo = firstRomanNo + " " + secondRomanNo
-		return concatenatedNo.collect{character -> character}
-	}
 
 
-	private void modifyTheAppearanceFieldOfMap(String[] digits) {
+	private void countAndStoreNumberOfAppearancesOfDigit(String[] digits) {
 		for (def i = 0; i < digits.length; i++) {
 			String digit = digits[i]
 			if (digit != " ") {
 				RomanDigit romanDigit = romanDigits.get(digit)
+
+				int count = romanDigit.numberOfAppearances
 				if (isDigitsEndPositionBiggerThanNexts(digits, i)) {
-					romanDigit.numberOfAppearances++;
+					count ++
 				} else {
-					romanDigit.numberOfAppearances--
+					count--
 				}
+				romanDigit.numberOfAppearances = count
 			}
 		}
 	}
@@ -70,7 +71,6 @@ class RomanCalculator {
 		RomanDigit romanDigit = romanDigits.get(digit)
 		RomanDigit nextRomanDigit = romanDigits.get(nextDigit)
 		return romanDigit.endPosition >= nextRomanDigit.endPosition
-
 	}
 
 	private getDigitsWithAtLeastOneAppearanceInOrder() {
