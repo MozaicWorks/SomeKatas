@@ -1,3 +1,8 @@
+import groovy.transform.EqualsAndHashCode
+import groovy.transform.ToString
+
+@EqualsAndHashCode
+@ToString
 class RomanDigit {
 
     def symbol
