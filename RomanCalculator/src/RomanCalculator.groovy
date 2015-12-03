@@ -62,14 +62,14 @@ class RomanCalculator {
 		return romanDigit.biggerThan(nextRomanDigit)
 	}
 
-	private RomanDigit computeRomanDigit(int i, String[] digits) {
+	private RomanDigit computeRomanDigit(int i, String[] romanNumberAsStringArray) {
 		RomanDigit nextRomanDigit = new RomanDigit(endPosition: -1)
-		def atTheEndOfTheNumber = (i >= digits.length)
+		def atTheEndOfTheNumber = (i >= romanNumberAsStringArray.length)
 		if (!atTheEndOfTheNumber) {
-			String nextDigit = digits[i]
+			String nextDigit = romanNumberAsStringArray[i]
 			nextRomanDigit = romanDigits[nextDigit]
 		}
-		nextRomanDigit
+		return nextRomanDigit
 	}
 
 
