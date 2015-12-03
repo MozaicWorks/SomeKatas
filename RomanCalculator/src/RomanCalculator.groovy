@@ -21,16 +21,20 @@ class RomanCalculator {
 		String[] digits = romanNumber.collect { character -> character }
 		for (def i = 0; i < digits.length; i++) {
 			String digit = digits[i]
-			RomanDigit romanDigit = romanDigits.get(digit)
-
-			int count = romanDigit.numberOfAppearances
-			if (isCurrentRomanDigitBiggerThanNextRomanDigit(digits, i)) {
-				count++
-			} else {
-				count--
-			}
-			romanDigit.numberOfAppearances = count
+			updateNumberOfAppearancesForRomanDigit(digit, digits, i)
 		}
+	}
+
+	private void updateNumberOfAppearancesForRomanDigit(String digit, String[] digits, int i) {
+		RomanDigit romanDigit = romanDigits.get(digit)
+
+		int count = romanDigit.numberOfAppearances
+		if (isCurrentRomanDigitBiggerThanNextRomanDigit(digits, i)) {
+			count++
+		} else {
+			count--
+		}
+		romanDigit.numberOfAppearances = count
 	}
 
 
