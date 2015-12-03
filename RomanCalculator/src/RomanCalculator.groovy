@@ -18,18 +18,15 @@ class RomanCalculator {
 
 
 	private void countAndStoreNumberOfAppearancesOfDigit(String romanNumber) {
-		String[] digits = romanNumber.collect { it }
-
 		romanNumber.eachWithIndex { digit, index ->
-			updateNumberOfAppearancesForRomanDigit(digit, digits, index)
+			updateNumberOfAppearancesForRomanDigit(digit, romanNumber, index)
 		}
 	}
 
-	private void updateNumberOfAppearancesForRomanDigit(String digit, String[] digits, int i) {
+	private void updateNumberOfAppearancesForRomanDigit(String digit, String romanNumber, int i) {
 		RomanDigit romanDigit = romanDigits.get(digit)
 
 		int count = romanDigit.numberOfAppearances
-		String romanNumber = digits.join()
 
 		if (isCurrentRomanDigitBiggerThanNextRomanDigit(romanNumber, i)) {
 			count++
