@@ -10,32 +10,29 @@ class RomanCalculator {
 
 
 	def calculate(String firstRomanNo, String secondRomanNo) {
-		def concatenatedNo = firstRomanNo + " " + secondRomanNo
-		String[] digits = concatenatedNo.collect{ character -> character}
-
-		countAndStoreNumberOfAppearancesOfDigit(digits)
+		countAndStoreNumberOfAppearancesOfDigit(firstRomanNo)
+		countAndStoreNumberOfAppearancesOfDigit(secondRomanNo)
 		transformDoubledAndQuadrupledSymbol()
 		return buildSumUsingTheRomanDigitMap()
 	}
 
 
-
-	private void countAndStoreNumberOfAppearancesOfDigit(String[] digits) {
+	private void countAndStoreNumberOfAppearancesOfDigit(String romanNumber) {
+		String[] digits = romanNumber.collect { character -> character }
 		for (def i = 0; i < digits.length; i++) {
 			String digit = digits[i]
-			if (digit != " ") {
-				RomanDigit romanDigit = romanDigits.get(digit)
+			RomanDigit romanDigit = romanDigits.get(digit)
 
-				int count = romanDigit.numberOfAppearances
-				if (isCurrentRomanDigitBiggerThanNextRomanDigit(digits, i)) {
-					count ++
-				} else {
-					count--
-				}
-				romanDigit.numberOfAppearances = count
+			int count = romanDigit.numberOfAppearances
+			if (isCurrentRomanDigitBiggerThanNextRomanDigit(digits, i)) {
+				count++
+			} else {
+				count--
 			}
+			romanDigit.numberOfAppearances = count
 		}
 	}
+
 
 	private void transformDoubledAndQuadrupledSymbol() {
 		def mapChanged = false
