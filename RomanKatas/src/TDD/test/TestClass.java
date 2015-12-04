@@ -18,4 +18,15 @@ public class TestClass {
 		assertEquals(expected, actual);
 	}
 
+	@Test
+	public void whenAddingIplusIItheResultIsIII() {
+		String expected = "III";
+		String firstTerm = "I";
+		String secondTerm = "II";
+
+		String actual = "III";
+
+		assertEquals(expected, actual);
+	}
+
 }
