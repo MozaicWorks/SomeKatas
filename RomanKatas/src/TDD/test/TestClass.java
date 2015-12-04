@@ -13,7 +13,7 @@ public class TestClass {
 		String firstTerm = "I";
 		String secondTerm = "I";
 
-		String actual = firstTerm+secondTerm;
+		String actual = add(firstTerm, secondTerm);
 
 		assertEquals(expected, actual);
 	}
@@ -24,7 +24,7 @@ public class TestClass {
 		String firstTerm = "I";
 		String secondTerm = "II";
 
-		String actual = "III";
+		String actual = add(firstTerm, secondTerm);
 
 		assertEquals(expected, actual);
 	}
@@ -35,9 +35,13 @@ public class TestClass {
 		String firstTerm = "V";
 		String secondTerm = "I";
 
-		String actual = "VI";
+		String actual = add(firstTerm, secondTerm);
 
 		assertEquals(expected, actual);
+	}
+
+	private String add(String firstTerm, String secondTerm) {
+		return firstTerm + secondTerm;
 	}
 
 }
