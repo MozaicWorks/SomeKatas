@@ -29,4 +29,15 @@ public class TestClass {
 		assertEquals(expected, actual);
 	}
 
+	@Test
+	public void whenAddingVplusItheResultIsVI() {
+		String expected = "VI";
+		String firstTerm = "V";
+		String secondTerm = "I";
+
+		String actual = "VI";
+
+		assertEquals(expected, actual);
+	}
+
 }
