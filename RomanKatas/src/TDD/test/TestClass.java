@@ -47,7 +47,7 @@ public class TestClass {
 		String firstTerm = "I";
 		String secondTerm = "V";
 
-		String actual = secondTerm + firstTerm;
+		String actual = concatenateWhenTheFirstTermIsI(firstTerm, secondTerm);
 
 		assertEquals(expected, actual);
 	}
@@ -58,7 +58,7 @@ public class TestClass {
 		String firstTerm = "I";
 		String secondTerm = "X";
 
-		String actual = secondTerm + firstTerm;
+		String actual = concatenateWhenTheFirstTermIsI(firstTerm, secondTerm);
 
 		assertEquals(expected, actual);
 	}
@@ -69,9 +69,13 @@ public class TestClass {
 		String firstTerm = "I";
 		String secondTerm = "L";
 
-		String actual = secondTerm + firstTerm;
+		String actual = concatenateWhenTheFirstTermIsI(firstTerm, secondTerm);
 
 		assertEquals(expected, actual);
+	}
+
+	private String concatenateWhenTheFirstTermIsI(String firstTerm, String secondTerm) {
+		return secondTerm + firstTerm;
 	}
 
 	private String add(String firstTerm, String secondTerm) {
