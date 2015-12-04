@@ -52,6 +52,17 @@ public class TestClass {
 		assertEquals(expected, actual);
 	}
 
+	@Test
+	public void whenAddingIplusXResultIsXI() {
+		String expected = "XI";
+		String firstTerm = "I";
+		String secondTerm = "X";
+
+		String actual = secondTerm + firstTerm;
+
+		assertEquals(expected, actual);
+	}
+
 	private String add(String firstTerm, String secondTerm) {
 		return firstTerm + secondTerm;
 	}
