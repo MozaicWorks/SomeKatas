@@ -1,4 +1,5 @@
 import org.junit.Test;
+import org.omg.CORBA.portable.Streamable;
 
 import static junit.framework.TestCase.assertEquals;
 
@@ -40,8 +41,21 @@ public class TestClass {
 		assertEquals(expected, actual);
 	}
 
+	@Test
+	public void whenAddingIplusVResultIsVI() {
+		String expected = "VI";
+		String firstTerm = "I";
+		String secondTerm = "V";
+
+		String actual = secondTerm + firstTerm;
+
+		assertEquals(expected, actual);
+	}
+
 	private String add(String firstTerm, String secondTerm) {
 		return firstTerm + secondTerm;
 	}
+
+
 
 }
