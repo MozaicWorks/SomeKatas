@@ -1,5 +1,4 @@
 import org.junit.Test;
-import org.omg.CORBA.portable.Streamable;
 
 import static junit.framework.TestCase.assertEquals;
 
@@ -14,7 +13,7 @@ public class TestClass {
 		String firstTerm = "I";
 		String secondTerm = "I";
 
-		String actual = add(firstTerm, secondTerm);
+		String actual = concatenateWhenTheSecondTermIsI(firstTerm, secondTerm);
 
 		assertEquals(expected, actual);
 	}
@@ -25,7 +24,7 @@ public class TestClass {
 		String firstTerm = "I";
 		String secondTerm = "II";
 
-		String actual = add(firstTerm, secondTerm);
+		String actual = concatenateWhenTheSecondTermIsI(firstTerm, secondTerm);
 
 		assertEquals(expected, actual);
 	}
@@ -36,7 +35,7 @@ public class TestClass {
 		String firstTerm = "V";
 		String secondTerm = "I";
 
-		String actual = add(firstTerm, secondTerm);
+		String actual = concatenateWhenTheSecondTermIsI(firstTerm, secondTerm);
 
 		assertEquals(expected, actual);
 	}
@@ -78,7 +77,7 @@ public class TestClass {
 		return secondTerm + firstTerm;
 	}
 
-	private String add(String firstTerm, String secondTerm) {
+	private String concatenateWhenTheSecondTermIsI(String firstTerm, String secondTerm) {
 		return firstTerm + secondTerm;
 	}
 
