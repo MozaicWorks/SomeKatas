@@ -8,7 +8,14 @@ import static junit.framework.TestCase.assertEquals;
 public class TestClass {
 
 	@Test
-	public void testToFail() {
-		assertEquals(1,3);
+	public void whenAddingIplusItheResultIsII() {
+		String expected = "II";
+		String firstTerm = "I";
+		String secondTerm = "I";
+
+		String actual = firstTerm+secondTerm;
+
+		assertEquals(expected, actual);
 	}
+
 }
