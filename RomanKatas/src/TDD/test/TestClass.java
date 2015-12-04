@@ -63,6 +63,17 @@ public class TestClass {
 		assertEquals(expected, actual);
 	}
 
+	@Test
+	public void whenAddingIplusLResultIsLI() {
+		String expected = "LI";
+		String firstTerm = "I";
+		String secondTerm = "L";
+
+		String actual = secondTerm + firstTerm;
+
+		assertEquals(expected, actual);
+	}
+
 	private String add(String firstTerm, String secondTerm) {
 		return firstTerm + secondTerm;
 	}
