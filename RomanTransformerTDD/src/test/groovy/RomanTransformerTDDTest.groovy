@@ -32,7 +32,7 @@ class RomanTransformerTDDTest extends Specification {
 
 	def "3 is III"() {
 		given:
-		def numeral = 2
+		def numeral = 3
 		def numeralTransformer = new NumeralTransformer()
 
 
@@ -41,6 +41,19 @@ class RomanTransformerTDDTest extends Specification {
 
 		then:
 		assertEquals("III", result)
+	}
+
+	def "5 is V"() {
+		given:
+		def numeral = 5
+		def numeralTransformer = new NumeralTransformer()
+
+
+		when:
+		def result = numeralTransformer.transform(numeral)
+
+		then:
+		assertEquals("V", result)
 	}
 
 }
