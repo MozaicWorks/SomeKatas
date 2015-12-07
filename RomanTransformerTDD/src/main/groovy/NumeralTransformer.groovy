@@ -1,5 +1,6 @@
 class NumeralTransformer {
 	def numeralMapping = [1: new RomanNumeral(romanValue: "I"),
+	                      4: new RomanNumeral(romanValue:  "IV"),
 	                      5: new RomanNumeral(romanValue:  "V"),
 	                      10: new RomanNumeral(romanValue:  "X"),
 	                      50: new RomanNumeral(romanValue:  "L"),
