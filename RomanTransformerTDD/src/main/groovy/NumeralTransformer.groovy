@@ -20,16 +20,11 @@ class NumeralTransformer {
 			return romanNumeral.romanValue
 		}
 
-		if (numeral > 50) {
-			return romanNumeralOverValue(numeral, 50)
-		}
-
-		if (numeral > 10) {
-			return romanNumeralOverValue(numeral, 10)
-		}
-
-		if (numeral > 5) {
-			return romanNumeralOverValue(numeral, 5)
+		def values = [1000, 500, 100, 50, 10, 5]
+		for (def it:values) {
+			if(numeral > it) {
+				return romanNumeralOverValue(numeral, it)
+			}
 		}
 
 		return "I" * numeral
