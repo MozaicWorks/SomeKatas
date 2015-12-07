@@ -32,6 +32,7 @@ class NumeralTransformer {
 
 	private def romanNumeralOverValue(int numeral, int decimal) {
 		def roman = numeralMapping.get(decimal).romanValue
+		if(numeral - decimal == 5) return roman + "V"
 		return roman + ("I" * (numeral - decimal))
 	}
 
