@@ -4,7 +4,8 @@ class NumeralTransformer {
 	                      10: new RomanNumeral(romanValue:  "X"),
 	                      50: new RomanNumeral(romanValue:  "L"),
 	                      100: new RomanNumeral(romanValue:  "C"),
-	                      500: new RomanNumeral(romanValue:  "D")]
+	                      500: new RomanNumeral(romanValue:  "D"),
+	                      1000: new RomanNumeral(romanValue:  "M")]
 	def transform(int numeral) {
 		RomanNumeral romanNumeral = numeralMapping.get(numeral);
 		if(romanNumeral) {
