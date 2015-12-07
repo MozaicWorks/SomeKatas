@@ -25,5 +25,6 @@ class RomanTransformerTDDTest extends Specification {
 		"II"       | 2
 		"III"      | 3
 		"V"        | 5
+		"X"        | 10
 	}
 }
