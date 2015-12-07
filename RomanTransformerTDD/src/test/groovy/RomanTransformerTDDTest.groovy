@@ -43,5 +43,6 @@ class RomanTransformerTDDTest extends Specification {
 		"XV"       | 15
 		"XIV"      | 14
 		"XVI"      | 16
+		"XVII"     | 17
 	}
 }
