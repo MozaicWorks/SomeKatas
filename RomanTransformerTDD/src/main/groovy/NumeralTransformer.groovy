@@ -10,6 +10,7 @@ class NumeralTransformer {
 	                      100: new RomanNumeral(romanValue:  "C"),
 	                      400: new RomanNumeral(romanValue:  "CD"),
 	                      500: new RomanNumeral(romanValue:  "D"),
+	                      900: new RomanNumeral(romanValue:  "CM"),
 	                      1000: new RomanNumeral(romanValue:  "M")]
 	def transform(int numeral) {
 		RomanNumeral romanNumeral = numeralMapping.get(numeral);
