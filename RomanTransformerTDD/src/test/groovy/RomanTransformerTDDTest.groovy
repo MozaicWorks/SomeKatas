@@ -36,6 +36,7 @@ class RomanTransformerTDDTest extends Specification {
 		"CM"       | 900
 		"VI"       | 6
 		"VII"      | 7
+		"XI"       | 11
 
 	}
 }
