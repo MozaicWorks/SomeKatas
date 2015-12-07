@@ -1,8 +1,6 @@
 import spock.lang.Specification
 import spock.lang.Unroll
 
-import static junit.framework.Assert.assertEquals
-
 class RomanTransformerTDDTest extends Specification {
 	def numeralTransformer
 
@@ -17,7 +15,7 @@ class RomanTransformerTDDTest extends Specification {
 		def result = numeralTransformer.transform(decimalValue)
 
 		then:
-		assertEquals(romanValue, result)
+		romanValue == result
 
 		where:
 		romanValue | decimalValue
@@ -26,5 +24,6 @@ class RomanTransformerTDDTest extends Specification {
 		"III"      | 3
 		"V"        | 5
 		"X"        | 10
+		"L"        | 50
 	}
 }
