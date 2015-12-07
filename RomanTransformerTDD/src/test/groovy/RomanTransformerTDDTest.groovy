@@ -1,59 +1,29 @@
 import spock.lang.Specification
+import spock.lang.Unroll
 
 import static junit.framework.Assert.assertEquals
 
 class RomanTransformerTDDTest extends Specification {
+	def numeralTransformer
 
-	def "1 is I"() {
-		given:
-		def numeral = 1
-		def numeralTransformer = new NumeralTransformer()
-
-
-		when:
-		def result = numeralTransformer.transform(numeral)
-
-		then:
-		assertEquals("I", result)
+	def setup() {
+		numeralTransformer = new NumeralTransformer()
 	}
 
-	def "2 is II"() {
-		given:
-		def numeral = 2
-		def numeralTransformer = new NumeralTransformer()
 
-
+	@Unroll
+	def "#decimalValue is #romanValue"(romanValue, decimalValue) {
 		when:
-		def result = numeralTransformer.transform(numeral)
+		def result = numeralTransformer.transform(decimalValue)
 
 		then:
-		assertEquals("II", result)
+		assertEquals(romanValue, result)
+
+		where:
+		romanValue | decimalValue
+		"I"        | 1
+		"II"       | 2
+		"III"      | 3
+		"V"        | 5
 	}
-
-	def "3 is III"() {
-		given:
-		def numeral = 3
-		def numeralTransformer = new NumeralTransformer()
-
-
-		when:
-		def result = numeralTransformer.transform(numeral)
-
-		then:
-		assertEquals("III", result)
-	}
-
-	def "5 is V"() {
-		given:
-		def numeral = 5
-		def numeralTransformer = new NumeralTransformer()
-
-
-		when:
-		def result = numeralTransformer.transform(numeral)
-
-		then:
-		assertEquals("V", result)
-	}
-
 }
