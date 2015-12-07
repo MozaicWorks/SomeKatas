@@ -20,6 +20,10 @@ class NumeralTransformer {
 			return romanNumeral.romanValue
 		}
 
+		if (numeral > 50) {
+			return romanNumeralOverValue(numeral, 50)
+		}
+
 		if (numeral > 10) {
 			return romanNumeralOverValue(numeral, 10)
 		}
