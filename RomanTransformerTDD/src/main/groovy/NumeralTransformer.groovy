@@ -8,6 +8,7 @@ class NumeralTransformer {
 	                      50: new RomanNumeral(romanValue:  "L"),
 	                      90: new RomanNumeral(romanValue:  "XC"),
 	                      100: new RomanNumeral(romanValue:  "C"),
+	                      400: new RomanNumeral(romanValue:  "CD"),
 	                      500: new RomanNumeral(romanValue:  "D"),
 	                      1000: new RomanNumeral(romanValue:  "M")]
 	def transform(int numeral) {
