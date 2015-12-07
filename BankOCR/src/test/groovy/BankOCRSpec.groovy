@@ -31,4 +31,19 @@ _|
 		result == 2
 	}
 
+	def "OCR recognizes digit 3"(){
+		given:
+		def printed3 = """\
+_
+_|
+_|"""
+		def ocrEngine = new OCREngine()
+
+		when:
+		def result = ocrEngine.recognize(printed3)
+
+		then:
+		result == 3
+	}
+
 }
