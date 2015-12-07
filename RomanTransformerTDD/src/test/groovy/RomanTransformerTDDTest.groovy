@@ -34,6 +34,7 @@ class RomanTransformerTDDTest extends Specification {
 		"XC"       | 90
 		"CD"       | 400
 		"CM"       | 900
+		"VI"       | 6
 
 	}
 }

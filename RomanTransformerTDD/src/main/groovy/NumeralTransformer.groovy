@@ -17,6 +17,9 @@ class NumeralTransformer {
 		if(romanNumeral) {
 			return romanNumeral.romanValue
 		}
+		if(numeral > 5) {
+			return "V" + ("I" * (numeral - 5))
+		}
 		return "I" * numeral
 	}
 }
