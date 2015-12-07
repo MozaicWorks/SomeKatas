@@ -32,7 +32,6 @@ class NumeralTransformer {
 
 	private def romanNumeralOverValue(int numeral, int decimal) {
 		def roman = numeralMapping.get(decimal).romanValue
-		if(numeral > 9 * decimal) return numeralMapping.get(9*decimal).romanValue+ transform(numeral - 9* decimal)
 		if(numeral > 4 * decimal) return numeralMapping.get(4*decimal).romanValue+ transform(numeral - 4* decimal)
 		if(numeral - decimal >= 4) return roman + transform(numeral - decimal)
 		return roman + ("I" * (numeral - decimal))
