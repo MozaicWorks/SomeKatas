@@ -4,6 +4,7 @@ class NumeralTransformer {
 	                      5: new RomanNumeral(romanValue:  "V"),
 	                      9: new RomanNumeral(romanValue:  "IX"),
 	                      10: new RomanNumeral(romanValue:  "X"),
+	                      40: new RomanNumeral(romanValue:  "XL"),
 	                      50: new RomanNumeral(romanValue:  "L"),
 	                      100: new RomanNumeral(romanValue:  "C"),
 	                      500: new RomanNumeral(romanValue:  "D"),

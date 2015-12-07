@@ -30,6 +30,7 @@ class RomanTransformerTDDTest extends Specification {
 		"M"        | 1000
 		"IV"       | 4
 		"IX"       | 9
+		"XL"       | 40
 
 	}
 }
