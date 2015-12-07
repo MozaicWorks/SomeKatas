@@ -1,0 +1,3 @@
+class RomanNumeral {
+	def romanValue
+}
