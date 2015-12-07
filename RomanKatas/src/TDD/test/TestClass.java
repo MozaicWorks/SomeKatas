@@ -6,7 +6,7 @@ import static junit.framework.TestCase.assertEquals;
  * Created by biancal on 04.12.2015.
  */
 public class TestClass {
-
+	
 	@Test
 	public void whenAddingIplusItheResultIsII() {
 		String expected = "II";
