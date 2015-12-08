@@ -60,5 +60,10 @@ class RomanTransformerTDDTest extends Specification {
 		"XCV"      | 95
 		"XCVIII"   | 98
 		"XCIX"     | 99
+		"CDI"      | 401
+		"CDIV"     | 404
+		"CDXLVIII" | 448
+		"CDXCV"    | 495
+		"CDXCV"    | 495
 	}
 }
