@@ -36,6 +36,10 @@ class NumeralTransformer {
 			roman = numeralMapping.get(90).romanValue
 			return roman + transform(numeral %10)
 		}
+		if(numeral > 900 && numeral < 1000) {
+			roman = numeralMapping.get(900).romanValue
+			return roman + transform(numeral %10)
+		}
 		if(numeral > 4 * decimal) return numeralMapping.get(4*decimal).romanValue+ transform(numeral - 4* decimal)
 		if(numeral - decimal >= 4) return roman + transform(numeral - decimal)
 		return roman + ("I" * (numeral - decimal))

@@ -65,5 +65,6 @@ class RomanTransformerTDDTest extends Specification {
 		"CDXLVIII" | 448
 		"CDXCV"    | 495
 		"CDXCV"    | 495
+		"CMI"      | 901
 	}
 }
