@@ -13,16 +13,16 @@ class NumeralTransformer {
 	                      4   : "IV",
 	                      1   : "I"]
 
-	def transform(int numeral) {
-		def romanNumeral = numeralMapping.get(numeral);
+	def transform(int numeralToBeTransformed) {
+		def romanNumeral = numeralMapping.get(numeralToBeTransformed)
 		if (romanNumeral) {
 			return romanNumeral
 		}
 
 		for (int it:numeralMapping.keySet()) {
-			if(numeral > it) {
+			if(numeralToBeTransformed > it) {
 				def roman = numeralMapping.get(it)
-				return roman + transform(numeral - it)
+				return roman + transform(numeralToBeTransformed - it)
 			}
 		}
 	}
