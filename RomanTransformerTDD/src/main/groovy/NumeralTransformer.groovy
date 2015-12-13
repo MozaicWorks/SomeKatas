@@ -1,37 +1,30 @@
 class NumeralTransformer {
-	def numeralMapping = [1   : "I",
-	                      4   : "IV",
-	                      5   : "V",
-	                      9   : "IX",
-	                      10  : "X",
-	                      40  : "XL",
-	                      50  : "L",
-	                      90  : "XC",
-	                      100 : "C",
-	                      400 : "CD",
-	                      500 : "D",
+	def numeralMapping = [1000: "M",
 	                      900 : "CM",
-	                      1000: "M"]
+	                      500 : "D",
+	                      400 : "CD",
+	                      100 : "C",
+	                      90  : "XC",
+	                      50  : "L",
+	                      40  : "XL",
+	                      10  : "X",
+	                      9   : "IX",
+	                      5   : "V",
+	                      4   : "IV",
+	                      1   : "I"]
 
 	def transform(int numeral) {
 		def romanNumeral = numeralMapping.get(numeral);
-
 		if (romanNumeral) {
 			return romanNumeral
 		}
 
-		def values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 5, 4, 1]
-		for (def it:values) {
+		for (int it:numeralMapping.keySet()) {
 			if(numeral > it) {
-				return romanNumeralOverValue(numeral, it)
+				def roman = numeralMapping.get(it)
+				return roman + transform(numeral - it)
 			}
 		}
 	}
-
-	private def romanNumeralOverValue(int numeral, int decimal) {
-		def roman = numeralMapping.get(decimal)
-		return roman + transform(numeral - decimal)
-	}
-
 }
 
