@@ -20,20 +20,17 @@ class NumeralTransformer {
 			return romanNumeral.romanValue
 		}
 
-		def values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 5]
+		def values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 5, 4, 1]
 		for (def it:values) {
 			if(numeral > it) {
 				return romanNumeralOverValue(numeral, it)
 			}
 		}
-
-		return "I" * numeral
 	}
 
 	private def romanNumeralOverValue(int numeral, int decimal) {
 		def roman = numeralMapping.get(decimal).romanValue
-		if(numeral - decimal >= 4) return roman + transform(numeral - decimal)
-		return roman + ("I" * (numeral - decimal))
+		return roman + transform(numeral - decimal)
 	}
 
 }
