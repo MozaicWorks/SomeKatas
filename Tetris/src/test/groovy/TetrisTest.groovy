@@ -6,11 +6,25 @@ class TetrisTest extends Specification {
 	// is not game over
 	def "1 x 1 empty game board is not game over"() {
 		given:
-		def boardGame = false
+			def boardGame = false
 		when:
-		def gameOver = isGameOver(boardGame)
+			def gameOver = isGameOver(boardGame)
 		then:
-		assert !gameOver
+			assert !gameOver
+
+	}
+
+
+
+	//game with filled 1 x 1 board
+	// is game over
+	def "1 x 1 filled board game is game over"() {
+		given:
+			def boardGame = true
+		when:
+			def gameOver = isGameOver(boardGame)
+		then:
+			assert gameOver
 
 	}
 
@@ -18,6 +32,9 @@ class TetrisTest extends Specification {
 		return boardGame
 
 	}
+
+
+
 
 	// new game starts with empty 1 x 1 board
 	// after game starts, a block falls
