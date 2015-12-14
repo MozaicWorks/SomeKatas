@@ -2,13 +2,18 @@ import spock.lang.Specification
 
 class TetrisTest extends Specification {
 
+
+	 TetrisGame tetrisGame
+
+	def setup() {
+		tetrisGame = new TetrisGame();
+	}
+
 	//game with empty 1 x 1 board
 	// is not game over
 	def "1 x 1 empty game board is not game over"() {
-		given:
-			def boardGame = false
 		when:
-			def gameOver = isGameOver(boardGame)
+			def gameOver = tetrisGame.isGameOver()
 		then:
 			assert !gameOver
 
@@ -20,25 +25,27 @@ class TetrisTest extends Specification {
 	// is game over
 	def "1 x 1 filled board game is game over"() {
 		given:
-			def boardGame = true
+			tetrisGame.boardGame = true
 		when:
-			def gameOver = isGameOver(boardGame)
+			def gameOver = tetrisGame.isGameOver()
 		then:
 			assert gameOver
 
 	}
 
-	def isGameOver(def boardGame) {
-		return boardGame
-
-	}
-
-
-
 
 	// new game starts with empty 1 x 1 board
 	// after game starts, a block falls
 	// game over
+	def "1 x 1 empty board game, one block falls returns game over"() {
+		when:
+			tetrisGame.fillBoardGame()
+			def gameOver = tetrisGame.isGameOver()
+		then:
+			assert gameOver
+	}
+
+
 
 
 // new game starts with empty 1 x 2 board
