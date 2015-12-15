@@ -41,10 +41,23 @@ class TetrisTest extends Specification {
 		given:
 			tetrisGame = new TetrisGame(1, 1)
 		when:
-			tetrisGame.fillBoardGame()
+			tetrisGame.blockFalls()
 			def gameOver = tetrisGame.isGameOver()
 		then:
 			assert gameOver
+	}
+
+
+	def "1 x 2 empty board, one block falls, does not return game over"() {
+		given:
+			tetrisGame = new TetrisGame(1, 2)
+		when:
+			tetrisGame.blockFalls()
+			def gameOver = tetrisGame.isGameOver()
+		then:
+			assert !gameOver
+
+
 	}
 
 

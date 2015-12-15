@@ -2,6 +2,7 @@ class TetrisGame {
 	boolean[][] filledGameCells
 	int boardWidth
 	int boardLength
+	int currentLevel
 
 	TetrisGame(def boardWidth, def boardLength) {
 		this.boardWidth = boardWidth
@@ -10,8 +11,12 @@ class TetrisGame {
 
 	}
 
-	def fillBoardGame() {
-		filledGameCells[0][0] = true
+	def blockFalls() {
+		if(currentLevel <= boardLength - 1) {
+			filledGameCells[0][currentLevel] = true
+			currentLevel++
+		}
+
 	}
 
 	def isGameOver() {
