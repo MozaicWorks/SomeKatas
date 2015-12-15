@@ -3,6 +3,7 @@ class TetrisGame {
 	int boardWidth
 	int boardLength
 	int currentLevel
+	int score
 
 	TetrisGame(def boardWidth, def boardLength) {
 		this.boardWidth = boardWidth
@@ -18,8 +19,9 @@ class TetrisGame {
 	}
 
 	def isGameOver() {
-		return filledGameCells[0][boardLength-1]
+		return currentLevel >= boardLength
 	}
+
 
 
 
