@@ -46,15 +46,12 @@ class TetrisTest extends Specification {
 			assert gameOver
 	}
 
-	def "10 x 20 empty board cell, block fall until game over, assert current level is 20"() {
+	def "1 x 20 empty board cell, block fall until game over, assert current level is 20"() {
 		given:
-			tetrisGame = new TetrisGame(10, 20)
+			tetrisGame = new TetrisGame(1, 20)
 		when:
 			tetrisGame.playGame()
 		then:
-			assert tetrisGame.currentLevel == 20
+			assert tetrisGame.filledLevel == 20
 	}
-
-
-
 }
