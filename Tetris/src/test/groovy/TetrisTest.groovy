@@ -54,4 +54,14 @@ class TetrisTest extends Specification {
 		then:
 			assert tetrisGame.filledLevel == 20
 	}
+
+	def "1 x 2 empty board cell, block falls one cell at a time, returns modified filledBoardCells"() {
+		given:
+			tetrisGame = new TetrisGame(1, 2)
+		when:
+			tetrisGame.fallsOneCell()
+		then:
+			assert tetrisGame.filledBoardCells[0][0]
+			assert !tetrisGame.filledBoardCells[0][1]
+	}
 }
