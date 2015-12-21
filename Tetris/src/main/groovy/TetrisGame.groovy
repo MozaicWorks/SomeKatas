@@ -10,7 +10,12 @@ class TetrisGame {
 		this.boardWidth = boardWidth
 		this.boardHeight = boardHeight
 		filledBoardCells = new boolean[boardWidth][boardHeight]
-		currentHeightPosition = boardHeight - 1
+		currentHeightPosition = boardHeight
+	}
+
+
+	TetrisGame() {
+
 	}
 
 	def blockFalls() {
@@ -41,9 +46,7 @@ class TetrisGame {
 	def fallsOneCell() {
 		currentHeightPosition --;
 		filledBoardCells[0][currentHeightPosition] = true
-		if(currentHeightPosition < boardHeight - 1) {
-			filledBoardCells[0][currentHeightPosition - 1] = false
-		}
+		filledLevel++
 	}
 
 
