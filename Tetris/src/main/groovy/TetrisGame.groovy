@@ -36,17 +36,28 @@ class TetrisGame {
 		}
 	}
 
-	def fallsOneCell() {
-		if(!isGameOver()) {
-			if(currentLengthPosition < boardLength) {
-				filledBoardCells[currentLengthPosition][0] = false
-			}
-			currentLengthPosition --;
-			filledBoardCells[currentLengthPosition][0] = true
-			filledLevel++
-		}
+	def canFall() {
+		currentLengthPosition > filledLevel
 	}
 
+	def fallsOneCell() {
+		if(canFall()) {
+			markCurrentPositionAsUnfilled()
+			currentLengthPosition --;
+			filledBoardCells[currentLengthPosition][0] = true
+			if(currentLengthPosition == filledLevel+1) {
+				filledLevel ++
+			}
+		}
+
+
+	}
+
+	private void markCurrentPositionAsUnfilled() {
+		if (currentLengthPosition < boardLength) {
+			filledBoardCells[currentLengthPosition][0] = false
+		}
+	}
 
 
 }
