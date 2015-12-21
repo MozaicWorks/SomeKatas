@@ -103,4 +103,15 @@ class TetrisTest extends Specification {
 		then:
 		assert !tetrisGame.filledBoardCells[1][0]
 	}
+
+	def "1 x 2 empty game board is not game over"() {
+		given:
+		tetrisGame = new TetrisGame(1, 2)
+		when:
+		def gameOver = tetrisGame.isGameOver()
+		then:
+		assert !gameOver
+	}
+
+
 }
