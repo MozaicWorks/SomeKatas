@@ -16,14 +16,17 @@ class TetrisGame {
 
 	def blockFalls() {
 		if(!isGameOver()) {
-			fall()
+			resetCurrentPosition()
+			while (canFall()) {
+				fallsOneCell()
+			}
 		}
 	}
 
-	private void fall() {
-		filledBoardCells[filledLevel][0] = true
-		filledLevel++
+	def resetCurrentPosition() {
+		currentLengthPosition = boardLength
 	}
+
 
 
 	def isGameOver() {
@@ -36,21 +39,22 @@ class TetrisGame {
 		}
 	}
 
-	def canFall() {
-		currentLengthPosition > filledLevel
-	}
 
 	def fallsOneCell() {
 		if(canFall()) {
 			markCurrentPositionAsUnfilled()
 			currentLengthPosition --;
 			filledBoardCells[currentLengthPosition][0] = true
-			if(currentLengthPosition == filledLevel+1) {
+			if(currentLengthPosition == filledLevel) {
 				filledLevel ++
 			}
 		}
 
 
+	}
+
+	def canFall() {
+		currentLengthPosition > filledLevel
 	}
 
 	private void markCurrentPositionAsUnfilled() {
