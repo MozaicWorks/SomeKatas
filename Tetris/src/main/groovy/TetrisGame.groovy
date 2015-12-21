@@ -1,22 +1,18 @@
 class TetrisGame {
 	boolean[][] filledBoardCells
 	int filledLevel
-	int currentHeightPosition
+	int currentLengthPosition
 
 	int boardWidth
-	int boardHeight
+	int boardLength
 
-	TetrisGame(def boardWidth, def boardHeight) {
+	TetrisGame(def boardLength, def boardWidth) {
 		this.boardWidth = boardWidth
-		this.boardHeight = boardHeight
-		filledBoardCells = new boolean[boardWidth][boardHeight]
-		currentHeightPosition = boardHeight
+		this.boardLength = boardLength
+		filledBoardCells = new boolean[boardLength][boardWidth]
+		currentLengthPosition = boardLength
 	}
 
-
-	TetrisGame() {
-
-	}
 
 	def blockFalls() {
 		if(canFall()) {
@@ -25,16 +21,16 @@ class TetrisGame {
 	}
 
 	private void fall() {
-		filledBoardCells[0][filledLevel] = true
+		filledBoardCells[filledLevel][0] = true
 		filledLevel++
 	}
 
 	private boolean canFall() {
-		filledLevel <= boardHeight
+		filledLevel <= boardLength
 	}
 
 	def isGameOver() {
-		return filledLevel >= boardHeight
+		return filledLevel >= boardLength
 	}
 
 	def playGame() {
@@ -44,8 +40,8 @@ class TetrisGame {
 	}
 
 	def fallsOneCell() {
-		currentHeightPosition --;
-		filledBoardCells[0][currentHeightPosition] = true
+		currentLengthPosition --;
+		filledBoardCells[currentLengthPosition][0] = true
 		filledLevel++
 	}
 
