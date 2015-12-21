@@ -1,7 +1,9 @@
 class TetrisGame {
 	boolean[][] filledBoardCells
 	int filledLevel
+
 	int currentLengthPosition
+	int currentWidthPosition
 
 	int boardWidth
 	int boardLength
@@ -11,6 +13,7 @@ class TetrisGame {
 		this.boardLength = boardLength
 		filledBoardCells = new boolean[boardLength][boardWidth]
 		currentLengthPosition = boardLength
+		currentWidthPosition = boardWidth/2
 	}
 
 
@@ -44,7 +47,7 @@ class TetrisGame {
 		if(canFall()) {
 			markCurrentPositionAsUnfilled()
 			currentLengthPosition --;
-			filledBoardCells[currentLengthPosition][0] = true
+			filledBoardCells[currentLengthPosition][currentWidthPosition] = true
 			if(currentLengthPosition == filledLevel) {
 				filledLevel ++
 			}
@@ -59,7 +62,7 @@ class TetrisGame {
 
 	private void markCurrentPositionAsUnfilled() {
 		if (currentLengthPosition < boardLength) {
-			filledBoardCells[currentLengthPosition][0] = false
+			filledBoardCells[currentLengthPosition][currentWidthPosition] = false
 		}
 	}
 
