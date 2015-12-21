@@ -113,5 +113,48 @@ class TetrisTest extends Specification {
 		assert !gameOver
 	}
 
+	def "1 x 2 empty board game, one block falls returns game over"() {
+		given:
+		tetrisGame = new TetrisGame(1, 2)
+		when:
+		tetrisGame.blockFalls()
+		def gameOver = tetrisGame.isGameOver()
+		then:
+		assert gameOver
+	}
+
+	def "20 x 10 empty board cell, block fall until game over, assert current level is 20"() {
+		given:
+		tetrisGame = new TetrisGame(20, 10)
+		when:
+		tetrisGame.playGame()
+		then:
+		assert tetrisGame.filledLevel == 20
+	}
+
+	def "1 x 2 board cell, one block falls left, assert filledBoardCells[0][1] is true" () {
+		given:
+		tetrisGame = new TetrisGame(1, 2)
+
+		when:
+		tetrisGame.fallsOneCell()
+		tetrisGame.moveBlockToLeft()
+		def result = tetrisGame.isCellFromGivenPositionFilled(0, 0)
+		then:
+		assert result
+	}
+
+	def "1 x 2 board cell, one block falls right, assert filledBoardCells[0][1] is true" () {
+		given:
+		tetrisGame = new TetrisGame(1, 2)
+
+		when:
+		tetrisGame.fallsOneCell()
+		tetrisGame.moveBlockToRight()
+		def result = tetrisGame.isCellFromGivenPositionFilled(0, 1)
+		then:
+		assert result
+	}
+
 
 }

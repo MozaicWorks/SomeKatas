@@ -45,7 +45,9 @@ class TetrisGame {
 
 	def fallsOneCell() {
 		if(canFall()) {
-			markCurrentPositionAsUnfilled()
+			if (currentLengthPosition < boardLength) {
+				markCurrentPositionAsUnfilled()
+			}
 			currentLengthPosition --;
 			filledBoardCells[currentLengthPosition][currentWidthPosition] = true
 			if(currentLengthPosition == filledLevel) {
@@ -61,10 +63,39 @@ class TetrisGame {
 	}
 
 	private void markCurrentPositionAsUnfilled() {
-		if (currentLengthPosition < boardLength) {
-			filledBoardCells[currentLengthPosition][currentWidthPosition] = false
+		filledBoardCells[currentLengthPosition][currentWidthPosition] = false
+	}
+
+	private void markCurrentPositionAsFilled() {
+		filledBoardCells[currentLengthPosition][currentWidthPosition] = true
+	}
+
+	def isCellFromGivenPositionFilled(int givenLength, int givenWidth) {
+		return filledBoardCells[givenLength][givenWidth]
+	}
+
+	def moveBlockToLeft() {
+		if(canMoveLeft()) {
+			markCurrentPositionAsUnfilled()
+			currentWidthPosition--
+			markCurrentPositionAsFilled()
 		}
 	}
 
+	boolean canMoveLeft() {
+		currentWidthPosition >= 1
+	}
 
+	def moveBlockToRight() {
+		if(canMoveRight()) {
+			markCurrentPositionAsUnfilled()
+			currentWidthPosition++
+			markCurrentPositionAsFilled()
+		}
+
+	}
+
+	boolean canMoveRight() {
+		currentWidthPosition <  boardLength-1
+	}
 }
