@@ -15,7 +15,7 @@ class TetrisGame {
 
 
 	def blockFalls() {
-		if(canFall()) {
+		if(!isGameOver()) {
 			fall()
 		}
 	}
@@ -25,9 +25,6 @@ class TetrisGame {
 		filledLevel++
 	}
 
-	private boolean canFall() {
-		filledLevel <= boardLength
-	}
 
 	def isGameOver() {
 		return filledLevel >= boardLength
@@ -40,10 +37,16 @@ class TetrisGame {
 	}
 
 	def fallsOneCell() {
-		currentLengthPosition --;
-		filledBoardCells[currentLengthPosition][0] = true
-		filledLevel++
+		if(!isGameOver()) {
+			if(currentLengthPosition < boardLength) {
+				filledBoardCells[currentLengthPosition][0] = false
+			}
+			currentLengthPosition --;
+			filledBoardCells[currentLengthPosition][0] = true
+			filledLevel++
+		}
 	}
+
 
 
 }
