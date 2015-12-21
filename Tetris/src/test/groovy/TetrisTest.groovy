@@ -92,4 +92,15 @@ class TetrisTest extends Specification {
 		then:
 		assert tetrisGame.filledBoardCells[0][0]
 	}
+
+
+	def "2 x 1 empty board cell, block current position is [1][0], it falls another cell, assert filledBoardCell[1][0] is false"() {
+		given:
+		tetrisGame = new TetrisGame(2, 1)
+		tetrisGame.currentLengthPosition = 1
+		when:
+		tetrisGame.fallsOneCell()
+		then:
+		assert !tetrisGame.filledBoardCells[1][0]
+	}
 }
