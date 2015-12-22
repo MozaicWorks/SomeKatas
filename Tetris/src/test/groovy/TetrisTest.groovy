@@ -261,6 +261,20 @@ class TetrisTest extends Specification {
 	}
 
 
+	def "20 x 10 board, J piece appears on screen, assert filledBoardCells[boardLength-2][witdth/2+1] is true"() {
+		given:
+		tetrisGame = new TetrisGame(20, 10)
+
+		when:
+		tetrisGame.initializeJPiece()
+		int lengthPos = tetrisGame.boardLength - 2
+		int widthPos = tetrisGame.boardWidth/2 + 1
+
+		then:
+		assert tetrisGame.isCellFromGivenPositionFilled(lengthPos, widthPos)
+	}
+
+
 
 
 
