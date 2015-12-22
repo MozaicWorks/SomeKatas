@@ -116,5 +116,13 @@ class TetrisGame {
 		markBoardCellAsFilled(currentLengthPosition, currentWidthPosition+2)
 	}
 
+	def initializeJPiece() {
+		currentLengthPosition --
+		markBoardCellAsFilled(currentLengthPosition, currentWidthPosition-1)
+		markBoardCellAsFilled(currentLengthPosition, currentWidthPosition)
+		markBoardCellAsFilled(currentLengthPosition, currentWidthPosition+1)
+		markBoardCellAsFilled(currentLengthPosition-1, currentWidthPosition+1)
 
+
+	}
 }
