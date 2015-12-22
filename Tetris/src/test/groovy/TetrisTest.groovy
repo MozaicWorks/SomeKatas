@@ -152,9 +152,27 @@ class TetrisTest extends Specification {
 		tetrisGame.fallsOneCell()
 		tetrisGame.moveBlockToRight()
 		def result = tetrisGame.isCellFromGivenPositionFilled(0, 1)
+
 		then:
 		assert result
 	}
+
+	def "20 x 10 board, I piece appears on screen, assert current length position is boardLength - 1"() {
+		given:
+		tetrisGame = new TetrisGame(20, 10)
+
+		when:
+		tetrisGame.initializeIPiece()
+
+		then:
+		assert tetrisGame.boardLength -1  == tetrisGame.currentLengthPosition
+
+	}
+
+
+
+
+
 
 
 }

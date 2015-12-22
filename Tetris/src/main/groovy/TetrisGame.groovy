@@ -49,7 +49,7 @@ class TetrisGame {
 				markCurrentPositionAsUnfilled()
 			}
 			currentLengthPosition --;
-			filledBoardCells[currentLengthPosition][currentWidthPosition] = true
+			markCurrentPositionAsFilled()
 			if(currentLengthPosition == filledLevel) {
 				filledLevel ++
 			}
@@ -58,7 +58,7 @@ class TetrisGame {
 
 	}
 
-	def canFall() {
+	private def canFall() {
 		currentLengthPosition > filledLevel
 	}
 
@@ -82,8 +82,8 @@ class TetrisGame {
 		}
 	}
 
-	boolean canMoveLeft() {
-		currentWidthPosition >= 1
+	private boolean canMoveLeft() {
+		currentWidthPosition > 0
 	}
 
 	def moveBlockToRight() {
@@ -92,10 +92,27 @@ class TetrisGame {
 			currentWidthPosition++
 			markCurrentPositionAsFilled()
 		}
-
 	}
 
-	boolean canMoveRight() {
+	private boolean canMoveRight() {
 		currentWidthPosition <  boardLength-1
+	}
+
+
+
+	def markBoardCellAsFilled(int length, int width) {
+		filledBoardCells[length][width] = true
+	}
+
+	def markBoardCellAsUnFilled(int length, int width) {
+		filledBoardCells[length][width] = false
+	}
+
+	def initializeIPiece() {
+		currentLengthPosition --
+		markBoardCellAsFilled(currentLengthPosition, currentWidthPosition-1)
+		markBoardCellAsFilled(currentLengthPosition, currentWidthPosition)
+		markBoardCellAsFilled(currentLengthPosition, currentWidthPosition+1)
+		markBoardCellAsFilled(currentLengthPosition, currentWidthPosition+2)
 	}
 }
