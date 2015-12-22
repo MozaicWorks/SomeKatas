@@ -170,7 +170,7 @@ class TetrisTest extends Specification {
 
 
 
-	def "20 x 10 board, I piece appears on screen, assert filledBoardCells[boardLength-1][witdth/2 -1] is true"() {
+	def "20 x 10 board, I piece appears on screen, assert filledBoardCells[boardLength-1][width/2 -1] is true"() {
 		given:
 		tetrisGame = new TetrisGame(20, 10)
 
@@ -178,6 +178,19 @@ class TetrisTest extends Specification {
 		tetrisGame.initializeIPiece()
 		int lengthPos = tetrisGame.boardLength - 1
 		int widthPos = tetrisGame.boardWidth/2 - 1
+		then:
+		assert tetrisGame.isCellFromGivenPositionFilled(lengthPos, widthPos)
+	}
+
+
+	def "20 x 10 board, I piece appears on screen, assert filledBoardCells[boardLength-1][width] is true"() {
+		given:
+		tetrisGame = new TetrisGame(20, 10)
+
+		when:
+		tetrisGame.initializeIPiece()
+		int lengthPos = tetrisGame.boardLength - 1
+		int widthPos = tetrisGame.boardWidth/2
 		then:
 		assert tetrisGame.isCellFromGivenPositionFilled(lengthPos, widthPos)
 	}
