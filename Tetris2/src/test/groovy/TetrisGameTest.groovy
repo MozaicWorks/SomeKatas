@@ -6,13 +6,13 @@ class TetrisGameTest extends Specification {
 
 	def "assert game is not over"() {
 		given:
-		TetrisGame tetrisGame
+		TetrisGame tetrisGame = new TetrisGame(1,1)
 
 		when:
-		tetrisGame = new TetrisGame()
+		def gameOver = tetrisGame.gameOver()
 
 		then:
-		!tetrisGame.gameOver()
+		!gameOver
 	}
 
 	def "empty board 1 x 1, initialize one piece, assert game is over"() {
@@ -20,12 +20,27 @@ class TetrisGameTest extends Specification {
 		TetrisGame tetrisGame
 
 		when:
-		tetrisGame = new TetrisGame()
+		tetrisGame = new TetrisGame(1,1)
 		tetrisGame.initializePiece()
+		def gameOver = tetrisGame.gameOver()
 
 		then:
-		tetrisGame.gameOver()
+		gameOver
+
 	}
 
+	def "empty board 2 x 1, initialize one piece, assert game is not over"() {
+		given:
+		TetrisGame tetrisGame
 
+		when:
+		tetrisGame = new TetrisGame(2, 1)
+		tetrisGame.initializePiece()
+		def gameOver = tetrisGame.gameOver()
+
+		then:
+		!gameOver
+
+
+	}
 }

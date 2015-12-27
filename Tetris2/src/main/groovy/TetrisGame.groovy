@@ -1,16 +1,26 @@
-/**
- * Created by biancal on 27.12.2015.
- */
+
 class TetrisGame {
 
-	def board = false
+	int length
+	int width
+	boolean[][] board
 
+
+	TetrisGame() {
+
+	}
+
+	TetrisGame(def length, def width){
+		this.length = length
+		this.width = width
+		board = new boolean[length][width]
+	}
 
 	def gameOver() {
-		board
+		board[length-1][width-1] && board[0][0]
 	}
 
 	def initializePiece() {
-		board = true
+		board[length-1][width-1] = true
 	}
 }
