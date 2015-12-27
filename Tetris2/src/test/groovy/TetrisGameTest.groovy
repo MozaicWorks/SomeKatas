@@ -3,14 +3,16 @@ import spock.lang.Specification
 
 class TetrisGameTest extends Specification {
 
-	def "failling test"() {
+	def "empty board 1 x 1, assert game is not over"() {
 		given:
-		def a
+		TetrisGame tetrisGame
 
 		when:
-		a = true
-
+		tetrisGame = new TetrisGame()
 		then:
-		a
+
+		!tetrisGame.gameOver()
 	}
+
+
 }
