@@ -3,8 +3,14 @@
  */
 class TetrisGame {
 
+	def board = false
+
 
 	def gameOver() {
-		return false
+		board
+	}
+
+	def initializePiece() {
+		board = true
 	}
 }
