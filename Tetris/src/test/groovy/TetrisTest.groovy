@@ -86,7 +86,7 @@ class TetrisTest extends Specification {
 	def "2 x 1 empty board cell, block current position is [1][0], it falls another cell, assert filledBoardCell[0][0] is true"() {
 		given:
 		tetrisGame = new TetrisGame(2, 1)
-		tetrisGame.currentLengthPosition = 1
+		tetrisGame.tetrisPiece.currentLengthPosition = 1
 		when:
 		tetrisGame.fallsOneCell()
 		then:
@@ -97,7 +97,7 @@ class TetrisTest extends Specification {
 	def "2 x 1 empty board cell, block current position is [1][0], it falls another cell, assert filledBoardCell[1][0] is false"() {
 		given:
 		tetrisGame = new TetrisGame(2, 1)
-		tetrisGame.currentLengthPosition = 1
+		tetrisGame.tetrisPiece.currentLengthPosition = 1
 		when:
 		tetrisGame.fallsOneCell()
 		then:
@@ -165,7 +165,7 @@ class TetrisTest extends Specification {
 		tetrisGame.initializeIPiece()
 
 		then:
-		assert tetrisGame.boardLength -1  == tetrisGame.currentLengthPosition
+		assert tetrisGame.boardLength -1  == tetrisGame.tetrisPiece.currentLengthPosition
 	}
 
 

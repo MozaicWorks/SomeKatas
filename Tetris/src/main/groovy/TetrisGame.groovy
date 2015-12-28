@@ -1,9 +1,9 @@
 class TetrisGame {
 	boolean[][] filledBoardCells
 	int filledLevel
+	
+	TetrisPiece tetrisPiece
 
-	int currentLengthPosition
-	int currentWidthPosition
 
 	int boardWidth
 	int boardLength
@@ -11,9 +11,10 @@ class TetrisGame {
 	TetrisGame(def boardLength, def boardWidth) {
 		this.boardWidth = boardWidth
 		this.boardLength = boardLength
+		tetrisPiece = new TetrisPiece()
 		filledBoardCells = new boolean[boardLength][boardWidth]
-		currentLengthPosition = boardLength
-		currentWidthPosition = boardWidth/2
+		tetrisPiece.currentLengthPosition = boardLength
+		tetrisPiece.currentWidthPosition = boardWidth/2
 	}
 
 
@@ -27,7 +28,7 @@ class TetrisGame {
 	}
 
 	def resetCurrentPosition() {
-		currentLengthPosition = boardLength
+		tetrisPiece.currentLengthPosition = boardLength
 	}
 
 
@@ -45,12 +46,12 @@ class TetrisGame {
 
 	def fallsOneCell() {
 		if(canFall()) {
-			if (currentLengthPosition < boardLength) {
+			if (tetrisPiece.currentLengthPosition < boardLength) {
 				markCurrentPositionAsUnfilled()
 			}
-			currentLengthPosition --;
+			tetrisPiece.currentLengthPosition --;
 			markCurrentPositionAsFilled()
-			if(currentLengthPosition == filledLevel) {
+			if(tetrisPiece.currentLengthPosition == filledLevel) {
 				filledLevel ++
 			}
 		}
@@ -59,15 +60,15 @@ class TetrisGame {
 	}
 
 	private def canFall() {
-		currentLengthPosition > filledLevel
+		tetrisPiece.currentLengthPosition > filledLevel
 	}
 
 	private void markCurrentPositionAsUnfilled() {
-		filledBoardCells[currentLengthPosition][currentWidthPosition] = false
+		filledBoardCells[tetrisPiece.currentLengthPosition][tetrisPiece.currentWidthPosition] = false
 	}
 
 	private void markCurrentPositionAsFilled() {
-		filledBoardCells[currentLengthPosition][currentWidthPosition] = true
+		filledBoardCells[tetrisPiece.currentLengthPosition][tetrisPiece.currentWidthPosition] = true
 	}
 
 	def isCellFromGivenPositionFilled(int givenLength, int givenWidth) {
@@ -77,25 +78,25 @@ class TetrisGame {
 	def moveBlockToLeft() {
 		if(canMoveLeft()) {
 			markCurrentPositionAsUnfilled()
-			currentWidthPosition--
+			tetrisPiece.currentWidthPosition--
 			markCurrentPositionAsFilled()
 		}
 	}
 
 	private boolean canMoveLeft() {
-		currentWidthPosition > 0
+		tetrisPiece.currentWidthPosition > 0
 	}
 
 	def moveBlockToRight() {
 		if(canMoveRight()) {
 			markCurrentPositionAsUnfilled()
-			currentWidthPosition++
+			tetrisPiece.currentWidthPosition++
 			markCurrentPositionAsFilled()
 		}
 	}
 
 	private boolean canMoveRight() {
-		currentWidthPosition <  boardLength-1
+		tetrisPiece.currentWidthPosition <  boardLength-1
 	}
 
 
@@ -109,19 +110,19 @@ class TetrisGame {
 	}
 
 	def initializeIPiece() {
-		currentLengthPosition --
-		markBoardCellAsFilled(currentLengthPosition, currentWidthPosition-1)
-		markBoardCellAsFilled(currentLengthPosition, currentWidthPosition)
-		markBoardCellAsFilled(currentLengthPosition, currentWidthPosition+1)
-		markBoardCellAsFilled(currentLengthPosition, currentWidthPosition+2)
+		tetrisPiece.currentLengthPosition --
+		markBoardCellAsFilled(tetrisPiece.currentLengthPosition, tetrisPiece.currentWidthPosition-1)
+		markBoardCellAsFilled(tetrisPiece.currentLengthPosition, tetrisPiece.currentWidthPosition)
+		markBoardCellAsFilled(tetrisPiece.currentLengthPosition, tetrisPiece.currentWidthPosition+1)
+		markBoardCellAsFilled(tetrisPiece.currentLengthPosition, tetrisPiece.currentWidthPosition+2)
 	}
 
 	def initializeJPiece() {
-		currentLengthPosition --
-		markBoardCellAsFilled(currentLengthPosition, currentWidthPosition-1)
-		markBoardCellAsFilled(currentLengthPosition, currentWidthPosition)
-		markBoardCellAsFilled(currentLengthPosition, currentWidthPosition+1)
-		markBoardCellAsFilled(currentLengthPosition-1, currentWidthPosition+1)
+		tetrisPiece.currentLengthPosition --
+		markBoardCellAsFilled(tetrisPiece.currentLengthPosition, tetrisPiece.currentWidthPosition-1)
+		markBoardCellAsFilled(tetrisPiece.currentLengthPosition, tetrisPiece.currentWidthPosition)
+		markBoardCellAsFilled(tetrisPiece.currentLengthPosition, tetrisPiece.currentWidthPosition+1)
+		markBoardCellAsFilled(tetrisPiece.currentLengthPosition-1, tetrisPiece.currentWidthPosition+1)
 
 
 	}

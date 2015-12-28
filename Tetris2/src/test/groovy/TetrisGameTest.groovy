@@ -40,7 +40,5 @@ class TetrisGameTest extends Specification {
 
 		then:
 		!gameOver
-
-
 	}
 }
