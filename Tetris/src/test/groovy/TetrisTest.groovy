@@ -52,7 +52,7 @@ class TetrisTest extends Specification {
 		when:
 			tetrisGame.playGame()
 		then:
-			assert tetrisGame.filledLevel == 20
+			assert tetrisGame.tetrisBoard.filledLevel == 20
 	}
 
 	def "1 x 1 empty board cell, block falls one cell at a time, assert filledBoardCell[0][0] is true"() {
@@ -61,7 +61,7 @@ class TetrisTest extends Specification {
 		when:
 			tetrisGame.fallsOneCell()
 		then:
-			assert tetrisGame.filledBoardCells[0][0]
+			assert tetrisGame.tetrisBoard.filledBoardCells[0][0]
 	}
 
 	def "2 x 1 empty board cell, block falls one cell, assert filledBoardCell[1][0] is true"() {
@@ -70,7 +70,7 @@ class TetrisTest extends Specification {
 		when:
 		tetrisGame.fallsOneCell()
 		then:
-		assert tetrisGame.filledBoardCells[1][0]
+		assert tetrisGame.tetrisBoard.filledBoardCells[1][0]
 	}
 
 
@@ -80,7 +80,7 @@ class TetrisTest extends Specification {
 		when:
 		tetrisGame.fallsOneCell()
 		then:
-		assert tetrisGame.filledBoardCells[1][0]
+		assert tetrisGame.tetrisBoard.filledBoardCells[1][0]
 	}
 
 	def "2 x 1 empty board cell, block current position is [1][0], it falls another cell, assert filledBoardCell[0][0] is true"() {
@@ -90,7 +90,7 @@ class TetrisTest extends Specification {
 		when:
 		tetrisGame.fallsOneCell()
 		then:
-		assert tetrisGame.filledBoardCells[0][0]
+		assert tetrisGame.tetrisBoard.filledBoardCells[0][0]
 	}
 
 
@@ -101,7 +101,7 @@ class TetrisTest extends Specification {
 		when:
 		tetrisGame.fallsOneCell()
 		then:
-		assert !tetrisGame.filledBoardCells[1][0]
+		assert !tetrisGame.tetrisBoard.filledBoardCells[1][0]
 	}
 
 	def "1 x 2 empty game board is not game over"() {
@@ -129,7 +129,7 @@ class TetrisTest extends Specification {
 		when:
 		tetrisGame.playGame()
 		then:
-		assert tetrisGame.filledLevel == 20
+		assert tetrisGame.tetrisBoard.filledLevel == 20
 	}
 
 	def "1 x 2 board cell, one block falls left, assert filledBoardCells[0][1] is true" () {
@@ -165,7 +165,7 @@ class TetrisTest extends Specification {
 		tetrisGame.initializeIPiece()
 
 		then:
-		assert tetrisGame.boardLength -1  == tetrisGame.tetrisPiece.currentLengthPosition
+		assert tetrisGame.tetrisBoard.boardLength -1  == tetrisGame.tetrisPiece.currentLengthPosition
 	}
 
 
@@ -176,8 +176,8 @@ class TetrisTest extends Specification {
 
 		when:
 		tetrisGame.initializeIPiece()
-		int lengthPos = tetrisGame.boardLength - 1
-		int widthPos = tetrisGame.boardWidth/2 - 1
+		int lengthPos = tetrisGame.tetrisBoard.boardLength - 1
+		int widthPos = tetrisGame.tetrisBoard.boardWidth/2 - 1
 		then:
 		assert tetrisGame.isCellFromGivenPositionFilled(lengthPos, widthPos)
 	}
@@ -189,8 +189,8 @@ class TetrisTest extends Specification {
 
 		when:
 		tetrisGame.initializeIPiece()
-		int lengthPos = tetrisGame.boardLength - 1
-		int widthPos = tetrisGame.boardWidth/2
+		int lengthPos = tetrisGame.tetrisBoard.boardLength - 1
+		int widthPos = tetrisGame.tetrisBoard.boardWidth/2
 		then:
 		assert tetrisGame.isCellFromGivenPositionFilled(lengthPos, widthPos)
 	}
@@ -201,8 +201,8 @@ class TetrisTest extends Specification {
 
 		when:
 		tetrisGame.initializeIPiece()
-		int lengthPos = tetrisGame.boardLength - 1
-		int widthPos = tetrisGame.boardWidth/2 + 1
+		int lengthPos = tetrisGame.tetrisBoard.boardLength - 1
+		int widthPos = tetrisGame.tetrisBoard.boardWidth/2 + 1
 		then:
 		assert tetrisGame.isCellFromGivenPositionFilled(lengthPos, widthPos)
 	}
@@ -213,8 +213,8 @@ class TetrisTest extends Specification {
 
 		when:
 		tetrisGame.initializeIPiece()
-		int lengthPos = tetrisGame.boardLength - 1
-		int widthPos = tetrisGame.boardWidth/2 + 2
+		int lengthPos = tetrisGame.tetrisBoard.boardLength - 1
+		int widthPos = tetrisGame.tetrisBoard.boardWidth/2 + 2
 
 		then:
 		assert tetrisGame.isCellFromGivenPositionFilled(lengthPos, widthPos)
@@ -226,8 +226,8 @@ class TetrisTest extends Specification {
 
 		when:
 		tetrisGame.initializeJPiece()
-		int lengthPos = tetrisGame.boardLength - 1
-		int widthPos = tetrisGame.boardWidth/2 -1
+		int lengthPos = tetrisGame.tetrisBoard.boardLength - 1
+		int widthPos = tetrisGame.tetrisBoard.boardWidth/2 -1
 
 		then:
 		assert tetrisGame.isCellFromGivenPositionFilled(lengthPos, widthPos)
@@ -239,8 +239,8 @@ class TetrisTest extends Specification {
 
 		when:
 		tetrisGame.initializeJPiece()
-		int lengthPos = tetrisGame.boardLength - 1
-		int widthPos = tetrisGame.boardWidth/2
+		int lengthPos = tetrisGame.tetrisBoard.boardLength - 1
+		int widthPos = tetrisGame.tetrisBoard.boardWidth/2
 
 		then:
 		assert tetrisGame.isCellFromGivenPositionFilled(lengthPos, widthPos)
@@ -253,8 +253,8 @@ class TetrisTest extends Specification {
 
 		when:
 		tetrisGame.initializeJPiece()
-		int lengthPos = tetrisGame.boardLength - 1
-		int widthPos = tetrisGame.boardWidth/2 + 1
+		int lengthPos = tetrisGame.tetrisBoard.boardLength - 1
+		int widthPos = tetrisGame.tetrisBoard.boardWidth/2 + 1
 
 		then:
 		assert tetrisGame.isCellFromGivenPositionFilled(lengthPos, widthPos)
@@ -267,8 +267,8 @@ class TetrisTest extends Specification {
 
 		when:
 		tetrisGame.initializeJPiece()
-		int lengthPos = tetrisGame.boardLength - 2
-		int widthPos = tetrisGame.boardWidth/2 + 1
+		int lengthPos = tetrisGame.tetrisBoard.boardLength - 2
+		int widthPos = tetrisGame.tetrisBoard.boardWidth/2 + 1
 
 		then:
 		assert tetrisGame.isCellFromGivenPositionFilled(lengthPos, widthPos)
