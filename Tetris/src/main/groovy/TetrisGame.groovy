@@ -6,13 +6,8 @@ class TetrisGame {
 
 
 	TetrisGame(def boardLength, def boardWidth) {
-		tetrisBoard = new TetrisBoard()
-		tetrisBoard.boardWidth = boardWidth
-		tetrisBoard.boardLength = boardLength
-		tetrisPiece = new TetrisPiece()
-		tetrisBoard.filledBoardCells = new boolean[boardLength][boardWidth]
-		tetrisPiece.currentLengthPosition = boardLength
-		tetrisPiece.currentWidthPosition = boardWidth/2
+		tetrisBoard = new TetrisBoard(boardLength, boardWidth)
+		tetrisPiece = new TetrisPiece(boardLength, boardWidth/2)
 	}
 
 

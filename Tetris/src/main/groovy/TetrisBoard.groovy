@@ -7,5 +7,11 @@ class TetrisBoard {
 	boolean[][] filledBoardCells
 	int filledLevel
 
+	TetrisBoard(def boardLength, def boardWidth) {
+		this.boardLength = boardLength
+		this.boardWidth = boardWidth
+		filledBoardCells = new boolean[boardLength][boardWidth]
+	}
+
 
 }
