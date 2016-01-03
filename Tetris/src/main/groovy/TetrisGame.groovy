@@ -40,7 +40,7 @@ class TetrisGame {
 	def fallsOneCell() {
 		if(canFall()) {
 			if (tetrisPiece.currentLengthPosition < tetrisBoard.boardLength) {
-				tetrisBoard.markPositionAsUnFilled(tetrisPiece.currentLengthPosition, tetrisPiece.currentWidthPosition)
+				markCurrentPositionAsUnfilled()
 			}
 			tetrisPiece.currentLengthPosition --;
 			markCurrentPositionAsFilled()
@@ -56,9 +56,12 @@ class TetrisGame {
 		tetrisPiece.currentLengthPosition > tetrisBoard.filledLevel
 	}
 
+	private void markCurrentPositionAsUnfilled() {
+		tetrisBoard.markPositionAsUnFilled(tetrisPiece.currentLengthPosition, tetrisPiece.currentWidthPosition)
+	}
 
 	private void markCurrentPositionAsFilled() {
-		tetrisBoard.filledBoardCells[tetrisPiece.currentLengthPosition][tetrisPiece.currentWidthPosition] = true
+		tetrisBoard.markPositionAsFilled(tetrisPiece.currentLengthPosition, tetrisPiece.currentWidthPosition)
 	}
 
 	def isCellFromGivenPositionFilled(int givenLength, int givenWidth) {
@@ -79,7 +82,7 @@ class TetrisGame {
 
 	def moveBlockToRight() {
 		if(canMoveRight()) {
-			tetrisBoard.markPositionAsUnFilled(tetrisPiece.currentLengthPosition, tetrisPiece.currentWidthPosition)
+			markCurrentPositionAsUnfilled()
 			tetrisPiece.currentWidthPosition++
 			markCurrentPositionAsFilled()
 		}
