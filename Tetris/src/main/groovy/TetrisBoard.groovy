@@ -17,5 +17,14 @@ class TetrisBoard {
 		return filledLevel >= boardLength
 	}
 
+	def markPositionAsFilled(int length, int width) {
+		filledBoardCells[length][width] = true
+	}
+
+
+	def markPositionAsUnFilled(int length, int width) {
+		filledBoardCells[length][width] = false
+	}
+
 
 }
