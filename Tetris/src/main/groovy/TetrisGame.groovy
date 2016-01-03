@@ -27,7 +27,7 @@ class TetrisGame {
 
 
 	def isGameOver() {
-		return tetrisBoard.filledLevel >= tetrisBoard.boardLength
+		return tetrisBoard.boardIsFilled()
 	}
 
 	def playGame() {

@@ -13,5 +13,9 @@ class TetrisBoard {
 		filledBoardCells = new boolean[boardLength][boardWidth]
 	}
 
+	def boardIsFilled() {
+		return filledLevel >= boardLength
+	}
+
 
 }
