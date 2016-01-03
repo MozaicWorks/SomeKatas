@@ -7,7 +7,7 @@ class TetrisGame {
 
 	TetrisGame(def boardLength, def boardWidth) {
 		tetrisBoard = new TetrisBoard(boardLength, boardWidth)
-		tetrisPiece = new TetrisPiece(boardLength, boardWidth/2)
+		tetrisPiece = new TetrisPiece(boardLength, boardWidth / 2)
 	}
 
 
@@ -70,7 +70,7 @@ class TetrisGame {
 
 	def moveBlockToLeft() {
 		if(canMoveLeft()) {
-			tetrisBoard.markPositionAsFilled(tetrisPiece.currentLengthPosition, tetrisPiece.currentWidthPosition)
+			markCurrentPositionAsUnfilled()
 			tetrisPiece.currentWidthPosition--
 			markCurrentPositionAsFilled()
 		}

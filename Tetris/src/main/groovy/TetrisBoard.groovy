@@ -26,5 +26,4 @@ class TetrisBoard {
 		filledBoardCells[length][width] = false
 	}
 
-
 }
