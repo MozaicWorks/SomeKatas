@@ -14,4 +14,11 @@ class TetrisPiece {
 		this.width = width
 		shape = new boolean[length][width]
 	}
+
+	def initializeIShape() {
+		length = 4
+		width = 4
+		shape = [[true, true, true, true], [false, false, false, false],
+		         [false, false, false, false], [false, false, false, false]]
+	}
 }

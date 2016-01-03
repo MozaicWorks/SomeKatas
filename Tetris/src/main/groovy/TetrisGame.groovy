@@ -7,8 +7,23 @@ class TetrisGame {
 
 	TetrisGame(def boardLength, def boardWidth) {
 		tetrisBoard = new TetrisBoard(boardLength, boardWidth)
-		tetrisPiece = new TetrisPiece(boardLength, boardWidth / 2)
+		generateCurrentPiece()
 	}
+
+	def generateCurrentPiece() {
+		tetrisPiece = new TetrisPiece(tetrisBoard.boardLength, tetrisBoard.boardWidth/2)
+		tetrisPiece.initializeIShape()
+	}
+
+	def displayCurrentPiece() {
+		for(int i = 0; i < tetrisPiece.length; i++) {
+			for (int j = 0; j < tetrisPiece.width; j++) {
+				tetrisBoard.filledBoardCells[tetrisPiece.currentLengthPosition-i][j+tetrisPiece.currentWidthPosition] \
+				 = tetrisPiece.shape[i][j]
+			}
+		}
+	}
+
 
 
 	def blockFalls() {
@@ -89,16 +104,13 @@ class TetrisGame {
 	}
 
 	private boolean canMoveRight() {
-		tetrisPiece.currentWidthPosition <  tetrisBoard.boardLength-1
+		tetrisPiece.currentWidthPosition <  tetrisBoard.boardWidth-1
 	}
 
 
 	def initializeIPiece() {
 		tetrisPiece.currentLengthPosition --
-		tetrisBoard.markPositionAsFilled(tetrisPiece.currentLengthPosition, tetrisPiece.currentWidthPosition-1)
-		tetrisBoard.markPositionAsFilled(tetrisPiece.currentLengthPosition, tetrisPiece.currentWidthPosition)
-		tetrisBoard.markPositionAsFilled(tetrisPiece.currentLengthPosition, tetrisPiece.currentWidthPosition+1)
-		tetrisBoard.markPositionAsFilled(tetrisPiece.currentLengthPosition, tetrisPiece.currentWidthPosition+2)
+		displayCurrentPiece()
 	}
 
 	def initializeJPiece() {
