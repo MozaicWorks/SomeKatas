@@ -17,7 +17,10 @@ class TetrisPiece {
 		this.length = length
 		this.width = width
 		shape = new boolean[length][width]
+		shape = true
 	}
+
+
 
 
 

@@ -14,12 +14,14 @@ class TetrisTest extends Specification {
 	}
 
 
-	def "1 x 1 empty board game, one block falls returns game over"() {
+	def "1 x 1 empty board game, one piece is initialized on table, returns game over"() {
 		given:
 			tetrisGame = new TetrisGame(1, 1)
+
 		when:
-			tetrisGame.blockFalls()
-			def gameOver = tetrisGame.isGameOver()
+		tetrisGame.generateCurrentPiece(TetrisPieceType.OTHER)
+		def gameOver = tetrisGame.isGameOver()
+
 		then:
 			assert gameOver
 	}
@@ -38,10 +40,12 @@ class TetrisTest extends Specification {
 	def "2 x 1 empty board cell, 2 blocks fall, returns game over "() {
 		given:
 			tetrisGame = new TetrisGame(2, 1)
+
 		when:
-			tetrisGame.blockFalls()
-			tetrisGame.blockFalls()
-			def gameOver = tetrisGame.isGameOver()
+		tetrisGame.blockFalls()
+		tetrisGame.blockFalls()
+		def gameOver = tetrisGame.isGameOver()
+
 		then:
 			assert gameOver
 	}
@@ -55,19 +59,12 @@ class TetrisTest extends Specification {
 			assert tetrisGame.tetrisBoard.filledLevel == 20
 	}
 
-	def "1 x 1 empty board cell, block falls one cell at a time, assert filledBoardCell[0][0] is true"() {
-		given:
-			tetrisGame = new TetrisGame(1, 1)
-		when:
-			tetrisGame.fallsOneCell()
-		then:
-			assert tetrisGame.tetrisBoard.filledBoardCells[0][0]
-	}
 
-	def "2 x 1 empty board cell, block falls one cell, assert filledBoardCell[1][0] is true"() {
+	def "2 x 1 empty board cell, block is initialized and falls one cell, assert filledBoardCell[1][0] is true"() {
 		given:
 		tetrisGame = new TetrisGame(2, 1)
 		when:
+		tetrisGame.generateCurrentPiece(TetrisPieceType.OTHER)
 		tetrisGame.fallsOneCell()
 		then:
 		assert tetrisGame.tetrisBoard.filledBoardCells[1][0]
@@ -78,35 +75,17 @@ class TetrisTest extends Specification {
 		given:
 		tetrisGame = new TetrisGame(2, 1)
 		when:
+		tetrisGame.generateCurrentPiece(TetrisPieceType.OTHER)
 		tetrisGame.fallsOneCell()
 		then:
 		assert tetrisGame.tetrisBoard.filledBoardCells[1][0]
 	}
 
-	def "2 x 1 empty board cell, block current position is [1][0], it falls another cell, assert filledBoardCell[0][0] is true"() {
-		given:
-		tetrisGame = new TetrisGame(2, 1)
-		tetrisGame.tetrisPiece.currentLengthPosition = 1
-		when:
-		tetrisGame.fallsOneCell()
-		then:
-		assert tetrisGame.tetrisBoard.filledBoardCells[0][0]
-	}
-
-
-	def "2 x 1 empty board cell, block current position is [1][0], it falls another cell, assert filledBoardCell[1][0] is false"() {
-		given:
-		tetrisGame = new TetrisGame(2, 1)
-		tetrisGame.tetrisPiece.currentLengthPosition = 1
-		when:
-		tetrisGame.fallsOneCell()
-		then:
-		assert !tetrisGame.tetrisBoard.filledBoardCells[1][0]
-	}
 
 	def "1 x 2 empty game board is not game over"() {
 		given:
 		tetrisGame = new TetrisGame(1, 2)
+
 		when:
 		def gameOver = tetrisGame.isGameOver()
 		then:
@@ -135,6 +114,7 @@ class TetrisTest extends Specification {
 	def "1 x 2 board cell, one block falls left, assert filledBoardCells[0][1] is true" () {
 		given:
 		tetrisGame = new TetrisGame(1, 2)
+		tetrisGame.generateCurrentPiece(TetrisPieceType.OTHER)
 
 		when:
 		tetrisGame.fallsOneCell()
@@ -147,6 +127,7 @@ class TetrisTest extends Specification {
 	def "1 x 2 board cell, one block falls right, assert filledBoardCells[0][1] is true" () {
 		given:
 		tetrisGame = new TetrisGame(1, 2)
+		tetrisGame.generateCurrentPiece(TetrisPieceType.OTHER)
 
 		when:
 		tetrisGame.fallsOneCell()
@@ -162,7 +143,7 @@ class TetrisTest extends Specification {
 		tetrisGame = new TetrisGame(20, 10)
 
 		when:
-		tetrisGame.initializeIPiece()
+		tetrisGame.generateCurrentPiece(TetrisPieceType.I)
 
 		then:
 		assert tetrisGame.tetrisBoard.boardLength -1  == tetrisGame.tetrisPiece.currentLengthPosition
@@ -175,7 +156,7 @@ class TetrisTest extends Specification {
 		tetrisGame = new TetrisGame(20, 10)
 
 		when:
-		tetrisGame.initializeIPiece()
+		tetrisGame.generateCurrentPiece(TetrisPieceType.I)
 		int lengthPos = tetrisGame.tetrisBoard.boardLength - 1
 		int widthPos = tetrisGame.tetrisBoard.boardWidth/2 +3
 		then:
@@ -188,31 +169,31 @@ class TetrisTest extends Specification {
 		tetrisGame = new TetrisGame(20, 10)
 
 		when:
-		tetrisGame.initializeIPiece()
+		tetrisGame.generateCurrentPiece(TetrisPieceType.I)
 		int lengthPos = tetrisGame.tetrisBoard.boardLength - 1
 		int widthPos = tetrisGame.tetrisBoard.boardWidth/2
 		then:
 		assert tetrisGame.isCellFromGivenPositionFilled(lengthPos, widthPos)
 	}
 
-	def "20 x 10 board, I piece appears on screen, assert filledBoardCells[boardLength-1][witdth/2 +1] is true"() {
+	def "20 x 10 board, I piece appears on screen, assert filledBoardCells[boardLength-2][witdth/2] is true"() {
 		given:
 		tetrisGame = new TetrisGame(20, 10)
 
 		when:
-		tetrisGame.initializeIPiece()
+		tetrisGame.generateCurrentPiece(TetrisPieceType.I)
 		int lengthPos = tetrisGame.tetrisBoard.boardLength - 1
 		int widthPos = tetrisGame.tetrisBoard.boardWidth/2 + 1
 		then:
 		assert tetrisGame.isCellFromGivenPositionFilled(lengthPos, widthPos)
 	}
 
-	def "20 x 10 board, I piece appears on screen, assert filledBoardCells[boardLength-1][witdth/2 +2] is true"() {
+	def "20 x 10 board, I piece appears on screen, assert filledBoardCells[boardLength-1][witdth/2] is true"() {
 		given:
 		tetrisGame = new TetrisGame(20, 10)
 
 		when:
-		tetrisGame.initializeIPiece()
+		tetrisGame.generateCurrentPiece(TetrisPieceType.I)
 		int lengthPos = tetrisGame.tetrisBoard.boardLength - 1
 		int widthPos = tetrisGame.tetrisBoard.boardWidth/2 + 2
 
@@ -220,25 +201,39 @@ class TetrisTest extends Specification {
 		assert tetrisGame.isCellFromGivenPositionFilled(lengthPos, widthPos)
 	}
 
-	def "20 x 10 board, J piece appears on screen, assert filledBoardCells[boardLength-1][witdth/2 -1] is true"() {
+	def "20 x 10 board, J piece appears on screen, assert filledBoardCells[boardLength-2][witdth/2 +1] is true"() {
 		given:
 		tetrisGame = new TetrisGame(20, 10)
 
 		when:
-		tetrisGame.initializeJPiece()
-		int lengthPos = tetrisGame.tetrisBoard.boardLength - 1
-		int widthPos = tetrisGame.tetrisBoard.boardWidth/2 -1
+		tetrisGame.generateCurrentPiece(TetrisPieceType.J)
+		int lengthPos = tetrisGame.tetrisBoard.boardLength - 2
+		int widthPos = tetrisGame.tetrisBoard.boardWidth/2 +1
 
 		then:
 		assert tetrisGame.isCellFromGivenPositionFilled(lengthPos, widthPos)
 	}
+
+	def "20 x 10 board, J piece appears on screen, assert filledBoardCells[boardLength-2][witdth/2 +2] is true"() {
+		given:
+		tetrisGame = new TetrisGame(20, 10)
+
+		when:
+		tetrisGame.generateCurrentPiece(TetrisPieceType.J)
+		int lengthPos = tetrisGame.tetrisBoard.boardLength - 2
+		int widthPos = tetrisGame.tetrisBoard.boardWidth/2+1
+
+		then:
+		assert tetrisGame.isCellFromGivenPositionFilled(lengthPos, widthPos)
+	}
+
 
 	def "20 x 10 board, J piece appears on screen, assert filledBoardCells[boardLength-1][witdth/2] is true"() {
 		given:
 		tetrisGame = new TetrisGame(20, 10)
 
 		when:
-		tetrisGame.initializeJPiece()
+		tetrisGame.generateCurrentPiece(TetrisPieceType.J)
 		int lengthPos = tetrisGame.tetrisBoard.boardLength - 1
 		int widthPos = tetrisGame.tetrisBoard.boardWidth/2
 
@@ -247,28 +242,14 @@ class TetrisTest extends Specification {
 	}
 
 
-	def "20 x 10 board, J piece appears on screen, assert filledBoardCells[boardLength-1][witdth/2+1] is true"() {
+	def "20 x 10 board, J piece appears on screen, assert filledBoardCells[boardLength-2][witdth/2] is true"() {
 		given:
 		tetrisGame = new TetrisGame(20, 10)
 
 		when:
-		tetrisGame.initializeJPiece()
-		int lengthPos = tetrisGame.tetrisBoard.boardLength - 1
-		int widthPos = tetrisGame.tetrisBoard.boardWidth/2 + 1
-
-		then:
-		assert tetrisGame.isCellFromGivenPositionFilled(lengthPos, widthPos)
-	}
-
-
-	def "20 x 10 board, J piece appears on screen, assert filledBoardCells[boardLength-2][witdth/2+1] is true"() {
-		given:
-		tetrisGame = new TetrisGame(20, 10)
-
-		when:
-		tetrisGame.initializeJPiece()
+		tetrisGame.generateCurrentPiece(TetrisPieceType.J)
 		int lengthPos = tetrisGame.tetrisBoard.boardLength - 2
-		int widthPos = tetrisGame.tetrisBoard.boardWidth/2 + 1
+		int widthPos = tetrisGame.tetrisBoard.boardWidth/2
 
 		then:
 		assert tetrisGame.isCellFromGivenPositionFilled(lengthPos, widthPos)
