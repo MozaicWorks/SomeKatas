@@ -276,8 +276,4 @@ class TetrisTest extends Specification {
 
 
 
-
-
-
-
 }

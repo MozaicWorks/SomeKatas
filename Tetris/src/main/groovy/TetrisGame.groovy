@@ -11,7 +11,7 @@ class TetrisGame {
 	}
 
 	def generateCurrentPiece() {
-		tetrisPiece = new TetrisPiece(tetrisBoard.boardLength, tetrisBoard.boardWidth/2)
+		tetrisPiece = new IPiece(tetrisBoard.boardLength, tetrisBoard.boardWidth/2)
 		tetrisPiece.initializeIShape()
 	}
 
@@ -119,7 +119,5 @@ class TetrisGame {
 		tetrisBoard.markPositionAsFilled(tetrisPiece.currentLengthPosition, tetrisPiece.currentWidthPosition)
 		tetrisBoard.markPositionAsFilled(tetrisPiece.currentLengthPosition, tetrisPiece.currentWidthPosition+1)
 		tetrisBoard.markPositionAsFilled(tetrisPiece.currentLengthPosition-1, tetrisPiece.currentWidthPosition+1)
-
-
 	}
 }

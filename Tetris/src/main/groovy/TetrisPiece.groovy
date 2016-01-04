@@ -7,6 +7,10 @@ class TetrisPiece {
 	int width
 	boolean[][] shape
 
+	TetrisPiece() {
+
+	}
+
 	TetrisPiece(def currentLengthPosition, def currentWidthPosition, def length = 1, def width = 1) {
 		this.currentLengthPosition = currentLengthPosition
 		this.currentWidthPosition = currentWidthPosition
@@ -15,10 +19,5 @@ class TetrisPiece {
 		shape = new boolean[length][width]
 	}
 
-	def initializeIShape() {
-		length = 4
-		width = 4
-		shape = [[true, true, true, true], [false, false, false, false],
-		         [false, false, false, false], [false, false, false, false]]
-	}
+
 }
