@@ -7,11 +7,12 @@ class TetrisGame {
 
 	TetrisGame(def boardLength, def boardWidth) {
 		tetrisBoard = new TetrisBoard(boardLength, boardWidth)
-		generateCurrentPiece()
+		generateCurrentPiece(TetrisPieceType.I)
 	}
 
-	def generateCurrentPiece() {
-		tetrisPiece = new IPiece(tetrisBoard.boardLength, tetrisBoard.boardWidth/2)
+	def generateCurrentPiece(TetrisPieceType type) {
+		tetrisPiece = type.createPiece(tetrisBoard.boardLength, tetrisBoard.boardWidth/2)
+
 	}
 
 	def displayCurrentPiece() {
@@ -62,8 +63,6 @@ class TetrisGame {
 				tetrisBoard.filledLevel ++
 			}
 		}
-
-
 	}
 
 	private def canFall() {
