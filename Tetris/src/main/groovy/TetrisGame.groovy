@@ -12,7 +12,6 @@ class TetrisGame {
 
 	def generateCurrentPiece() {
 		tetrisPiece = new IPiece(tetrisBoard.boardLength, tetrisBoard.boardWidth/2)
-		tetrisPiece.initializeIShape()
 	}
 
 	def displayCurrentPiece() {
