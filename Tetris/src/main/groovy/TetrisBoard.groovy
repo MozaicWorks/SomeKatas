@@ -22,22 +22,26 @@ class TetrisBoard {
 	def getFilledLevel() {
 		def maxFilledLevelOnBoard = 0
 		for(def i = 0; i < boardWidth; i++) {
-			def maxLevelOnLength = 0
-			for(def j =0; j < boardLength; j++) {
-				if(filledBoardCells[j][i] == 1)	{
-					maxLevelOnLength++
-				}  else {
-					break
-				}
-			}
-			if(maxFilledLevelOnBoard < maxLevelOnLength) {
-				maxFilledLevelOnBoard = maxLevelOnLength
+			def maxLevelOnColumn = getMaxLevelOnColumn(i)
+			if(maxFilledLevelOnBoard < maxLevelOnColumn) {
+				maxFilledLevelOnBoard = maxLevelOnColumn
 			}
 		}
 
 		return maxFilledLevelOnBoard
 	}
 
+	private int getMaxLevelOnColumn(int columnIndex) {
+		def maxLevel = 0
+		for (def i = 0; i < boardLength; i++) {
+			if (filledBoardCells[i][columnIndex] == 1) {
+				maxLevel++
+			} else {
+				break
+			}
+		}
+		return maxLevel
+	}
 
 
 	def markPositionAsFilled(int length, int width) {
