@@ -60,7 +60,7 @@ class TetrisTest extends Specification {
 	}
 
 
-	def "2 x 1 empty board cell, block is initialized and falls one cell, assert filledBoardCell[1][0] is true"() {
+	def "2 x 1 empty board cell, block is initialized and falls one cell, assert filledBoardCell[1][0] is 1"() {
 		given:
 		tetrisGame = new TetrisGame(2, 1)
 		when:
@@ -111,7 +111,7 @@ class TetrisTest extends Specification {
 		assert tetrisGame.tetrisBoard.filledLevel == 20
 	}
 
-	def "1 x 2 board cell, one block falls left, assert filledBoardCells[0][1] is true" () {
+	def "1 x 2 board cell, one block falls left, assert filledBoardCells[0][1] is 1" () {
 		given:
 		tetrisGame = new TetrisGame(1, 2)
 		tetrisGame.generateCurrentPiece(TetrisPieceType.OTHER)
@@ -124,7 +124,7 @@ class TetrisTest extends Specification {
 		assert result
 	}
 
-	def "1 x 2 board cell, one block falls right, assert filledBoardCells[0][1] is true" () {
+	def "1 x 2 board cell, one block falls right, assert filledBoardCells[0][1] is 1" () {
 		given:
 		tetrisGame = new TetrisGame(1, 2)
 		tetrisGame.generateCurrentPiece(TetrisPieceType.OTHER)
@@ -151,7 +151,7 @@ class TetrisTest extends Specification {
 
 
 
-	def "20 x 10 board, I piece appears on screen, assert filledBoardCells[boardLength-1][width/2 +3] is true"() {
+	def "20 x 10 board, I piece appears on screen, assert filledBoardCells[boardLength-1][width/2 +3] is 1"() {
 		given:
 		tetrisGame = new TetrisGame(20, 10)
 
@@ -164,7 +164,7 @@ class TetrisTest extends Specification {
 	}
 
 
-	def "20 x 10 board, I piece appears on screen, assert filledBoardCells[boardLength-1][width] is true"() {
+	def "20 x 10 board, I piece appears on screen, assert filledBoardCells[boardLength-1][width] is 1"() {
 		given:
 		tetrisGame = new TetrisGame(20, 10)
 
@@ -176,7 +176,7 @@ class TetrisTest extends Specification {
 		assert tetrisGame.isCellFromGivenPositionFilled(lengthPos, widthPos)
 	}
 
-	def "20 x 10 board, I piece appears on screen, assert filledBoardCells[boardLength-2][witdth/2] is true"() {
+	def "20 x 10 board, I piece appears on screen, assert filledBoardCells[boardLength-2][witdth/2] is 1"() {
 		given:
 		tetrisGame = new TetrisGame(20, 10)
 
@@ -188,7 +188,7 @@ class TetrisTest extends Specification {
 		assert tetrisGame.isCellFromGivenPositionFilled(lengthPos, widthPos)
 	}
 
-	def "20 x 10 board, I piece appears on screen, assert filledBoardCells[boardLength-1][witdth/2] is true"() {
+	def "20 x 10 board, I piece appears on screen, assert filledBoardCells[boardLength-1][witdth/2] is 1"() {
 		given:
 		tetrisGame = new TetrisGame(20, 10)
 
@@ -201,7 +201,7 @@ class TetrisTest extends Specification {
 		assert tetrisGame.isCellFromGivenPositionFilled(lengthPos, widthPos)
 	}
 
-	def "20 x 10 board, J piece appears on screen, assert filledBoardCells[boardLength-2][witdth/2 +1] is true"() {
+	def "20 x 10 board, J piece appears on screen, assert filledBoardCells[boardLength-2][witdth/2 +1] is 1"() {
 		given:
 		tetrisGame = new TetrisGame(20, 10)
 
@@ -214,7 +214,7 @@ class TetrisTest extends Specification {
 		assert tetrisGame.isCellFromGivenPositionFilled(lengthPos, widthPos)
 	}
 
-	def "20 x 10 board, J piece appears on screen, assert filledBoardCells[boardLength-2][witdth/2 +2] is true"() {
+	def "20 x 10 board, J piece appears on screen, assert filledBoardCells[boardLength-2][witdth/2 +2] is 1"() {
 		given:
 		tetrisGame = new TetrisGame(20, 10)
 
@@ -228,7 +228,7 @@ class TetrisTest extends Specification {
 	}
 
 
-	def "20 x 10 board, J piece appears on screen, assert filledBoardCells[boardLength-1][witdth/2] is true"() {
+	def "20 x 10 board, J piece appears on screen, assert filledBoardCells[boardLength-1][witdth/2] is 1"() {
 		given:
 		tetrisGame = new TetrisGame(20, 10)
 
@@ -242,7 +242,7 @@ class TetrisTest extends Specification {
 	}
 
 
-	def "20 x 10 board, J piece appears on screen, assert filledBoardCells[boardLength-2][witdth/2] is true"() {
+	def "20 x 10 board, J piece appears on screen, assert filledBoardCells[boardLength-2][witdth/2] is 1"() {
 		given:
 		tetrisGame = new TetrisGame(20, 10)
 

@@ -6,8 +6,8 @@ class JPiece extends TetrisPiece {
 		this.currentWidthPosition = currentWidthPosition
 		this.length = length
 		this.width = width
-		shape = new boolean[length][width]
-		shape = [[true, false, false], [true, true, true], [false, false, false]]
+		shape = new int[length][width]
+		shape = [[1, 0, 0], [1, 1, 1], [0, 0, 0]]
 	}
 
 }

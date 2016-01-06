@@ -5,7 +5,7 @@ class TetrisPiece {
 	int currentWidthPosition
 	int length
 	int width
-	boolean[][] shape
+	int[][] shape
 
 	TetrisPiece() {
 
@@ -16,8 +16,8 @@ class TetrisPiece {
 		this.currentWidthPosition = currentWidthPosition
 		this.length = length
 		this.width = width
-		shape = new boolean[length][width]
-		shape = true
+		shape = new int[length][width]
+		shape = 1
 	}
 
 

@@ -3,14 +3,14 @@ class TetrisBoard {
 	int boardWidth
 	int boardLength
 
-	boolean[][] filledBoardCells
+	int[][] filledBoardCells
 	int filledLevel
 
 
 	TetrisBoard(def boardLength, def boardWidth) {
 		this.boardLength = boardLength
 		this.boardWidth = boardWidth
-		filledBoardCells = new boolean[boardLength][boardWidth]
+		filledBoardCells = new int[boardLength][boardWidth]
 	}
 
 
@@ -19,13 +19,15 @@ class TetrisBoard {
 		return filledLevel >= boardLength
 	}
 
+
+
 	def markPositionAsFilled(int length, int width) {
-		filledBoardCells[length][width] = true
+		filledBoardCells[length][width] = 1
 	}
 
 
 	def markPositionAsUnFilled(int length, int width) {
-		filledBoardCells[length][width] = false
+		filledBoardCells[length][width] = 0
 	}
 
 }
