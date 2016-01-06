@@ -56,29 +56,29 @@ class TetrisTest extends Specification {
 		when:
 			tetrisGame.playGame()
 		then:
-			assert tetrisGame.tetrisBoard.filledLevel == 20
+			assert tetrisGame.tetrisBoard.getFilledLevel() == 20
 	}
 
 
-	def "2 x 1 empty board cell, block is initialized and falls one cell, assert filledBoardCell[1][0] is 1"() {
+	def "2 x 1 empty board cell, block is initialized and falls one cell, assert filledBoardCell[0][0] is 1"() {
 		given:
 		tetrisGame = new TetrisGame(2, 1)
 		when:
 		tetrisGame.generateCurrentPiece(TetrisPieceType.OTHER)
 		tetrisGame.fallsOneCell()
 		then:
-		assert tetrisGame.tetrisBoard.filledBoardCells[1][0]
+		assert tetrisGame.isCellFromGivenPositionFilled(0, 0)
 	}
 
 
-	def "2 x 1 empty board cell, block falls one cell, assert filledBoardCell[0][0] is false"() {
+	def "2 x 1 empty board cell, block falls one cell, assert filledBoardCell[1][0] is false"() {
 		given:
 		tetrisGame = new TetrisGame(2, 1)
 		when:
 		tetrisGame.generateCurrentPiece(TetrisPieceType.OTHER)
 		tetrisGame.fallsOneCell()
 		then:
-		assert tetrisGame.tetrisBoard.filledBoardCells[1][0]
+		assert !tetrisGame.isCellFromGivenPositionFilled(1,0)
 	}
 
 

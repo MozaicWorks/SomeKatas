@@ -14,9 +14,6 @@ class TetrisGame {
 	}
 
 	def initializeCurrentPieceOnBoard() {
-		if(tetrisPiece.currentLengthPosition - tetrisPiece.length <= tetrisBoard.filledLevel) {
-			tetrisBoard.filledLevel++
-		}
 		for(int i = 0; i < tetrisPiece.length; i++) {
 			for (int j = 0; j < tetrisPiece.width; j++) {
 				tetrisBoard.filledBoardCells[tetrisPiece.currentLengthPosition-i][j+tetrisPiece.currentWidthPosition] \
@@ -52,14 +49,11 @@ class TetrisGame {
 			markCurrentPositionAsUnfilled()
 			tetrisPiece.currentLengthPosition --;
 			markCurrentPositionAsFilled()
-			if(tetrisPiece.currentLengthPosition - tetrisPiece.length == tetrisBoard.filledLevel) {
-				tetrisBoard.filledLevel ++
-			}
 		}
 	}
 
 	private def canFall() {
-		tetrisPiece.currentLengthPosition > tetrisBoard.filledLevel
+		tetrisPiece.currentLengthPosition > tetrisBoard.getFilledLevel()
 	}
 
 	private void markCurrentPositionAsUnfilled() {
