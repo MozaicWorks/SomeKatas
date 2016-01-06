@@ -37,10 +37,11 @@ class TetrisBoard {
 			if (filledBoardCells[i][columnIndex] == 1) {
 				maxLevel++
 			} else {
-				break
+				return maxLevel
 			}
 		}
 		return maxLevel
+
 	}
 
 
