@@ -10,8 +10,11 @@ class BootStrap {
 	    todoList1.addToTasks(task1)
 	    todoList1.save(failOnError: true)
 
-	    User user1 = new User(name: "user1")
-	    user1.addToTasks(task1).save()
+	    User user1 = new User(name: "user")
+	    user1.addToTasks(task1)
+	    user1.save(failOnError: true)
+	    task1.user = user1
+	    task1.save(failOnError: true)
 
 
 
