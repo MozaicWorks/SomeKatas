@@ -12,7 +12,6 @@ class Task {
 
 
     static constraints = {
-        todoList unique: true
 	    user nullable: true
     }
 }
