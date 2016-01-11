@@ -15,9 +15,5 @@
 TodoList nr: ${nr} <br />
 ${items}
 
-<br/>Users nr: ${nrUsers}
-<br/>Users:<br/>
-${users}
-
 </body>
 </html>
