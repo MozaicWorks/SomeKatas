@@ -10,6 +10,8 @@ Name: ${name}
 Done: ${done}
 Deadline: ${deadline}
 User: ${user}<br/>
-Tasks from todolist1:${tasks}
+Tasks from todolist1:${tasks}<br/>
+Tasks done before deadline:${finishedBeforeScheduleTasks}<br/>
+Users with tasks done before deadline: ${users}
 </body>
 </html>

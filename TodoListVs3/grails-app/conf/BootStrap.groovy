@@ -8,8 +8,8 @@ class BootStrap {
 		    Task task1 = new Task(name:"task1", done: false, deadline: new Date())
 		    Task task2 = new Task(name:"task2", done: false, deadline: new Date().minus(5))
 		    Task task3 = new Task(name:"task3", done: true, deadline: new Date().minus(7))
-		    Task task4 = new Task(name:"task4", done: true, deadline: new Date().plus(3))
-		    Task task5 = new Task(name:"task5", done: false, deadline: new Date().plus(1))
+		    Task task4 = new Task(name:"task4", done: true, deadline: new Date().minus(3))
+		    Task task5 = new Task(name:"task5", done: true, deadline: new Date().minus(1))
 		    Task task6 = new Task(name:"task6", done: true, deadline: new Date().plus(2))
 
 		    TodoList todoList1 = new TodoList(name: "todolist1")
