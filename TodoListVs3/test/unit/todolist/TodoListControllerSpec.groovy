@@ -75,15 +75,4 @@ class TodoListControllerSpec extends Specification {
 	    assert  !result.done
     }
 
-	@Ignore
-	void "assert number of tasks with todolist with name todolist1 is 3 "() {
-		given:
-
-		when:
-		TodoList todoList1 = TodoList.findByName("task1")
-		List<Task> tasks = Task.findAllByTodoList(todoList1)
-
-		then:
-		assert 3, tasks.size()
-	}
 }

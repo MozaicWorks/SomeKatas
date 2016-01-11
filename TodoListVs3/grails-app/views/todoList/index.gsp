@@ -9,6 +9,7 @@
 Name: ${name}
 Done: ${done}
 Deadline: ${deadline}
-User: ${user}
+User: ${user}<br/>
+Tasks from todolist1:${tasks}
 </body>
 </html>

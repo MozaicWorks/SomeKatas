@@ -12,7 +12,7 @@ class BootStrap {
 		    Task task5 = new Task(name:"task5", done: false, deadline: new Date().plus(1))
 		    Task task6 = new Task(name:"task6", done: true, deadline: new Date().plus(2))
 
-		    TodoList todoList1 = new TodoList(name: "todoList1")
+		    TodoList todoList1 = new TodoList(name: "todolist1")
 		    todoList1.addToTasks(task1)
 		    todoList1.addToTasks(task2)
 		    todoList1.addToTasks(task3)

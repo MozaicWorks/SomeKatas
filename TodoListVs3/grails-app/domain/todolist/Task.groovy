@@ -6,6 +6,7 @@ class Task {
     Date deadline
     boolean done
 	User user
+	TodoList todoList
 
     static belongsTo = [todoList:TodoList]
 
